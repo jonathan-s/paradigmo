@@ -23,7 +23,8 @@
         <div class="content-box">
             <div class="question-text">
                 <div class="category">
-                    <span data-question-target="type"></span> - <span data-question-target="theme"></span>
+                    <span data-question-target="type" class="title"></span> -
+                    <span data-question-target="theme" class="title"></span>
                 </div>
                 <span data-question-target="question" data-action="question:ready@window->question#init">
                     loading...
@@ -32,32 +33,32 @@
 
             <div class="options">
                 <label class="option agree-totally">
-                    <input type="radio" name="question" value="2">
+                    <input data-action="question#answer" data-question-target="answer" type="radio" name="question" value="2">
                     <span>CONCORDO TOTALMENTE</span>
                     <span class="option-icon">👍👍</span>
                 </label>
                 <label class="option agree-partially">
-                    <input type="radio" name="question" value="1">
+                    <input data-action="question#answer" data-question-target="answer" type="radio" name="question" value="1">
                     <span>CONCORDO PARCIALMENTE</span>
                     <span class="option-icon">👍</span>
                 </label>
                 <label class="option neutral">
-                    <input type="radio" name="question" value="0">
+                    <input data-action="question#answer" data-question-target="answer" type="radio" name="question" value="0">
                     <span>POSIÇÃO NEUTRA</span>
                     <span class="option-icon"></span>
                 </label>
                 <label class="option disagree-partially">
-                    <input type="radio" name="question" value="-1">
+                    <input data-action="question#answer" data-question-target="answer" type="radio" name="question" value="-1">
                     <span>DISCORDO PARCIALMENTE</span>
                     <span class="option-icon">👎</span>
                 </label>
                 <label class="option disagree-totally">
-                    <input type="radio" name="question" value="-2">
+                    <input data-action="question#answer" data-question-target="answer" type="radio" name="question" value="-2">
                     <span>DISCORDO TOTALMENTE</span>
                     <span class="option-icon">👎👎</span>
                 </label>
                 <label class="option no-answer">
-                    <input type="radio" name="question" value="0">
+                    <input data-action="question#answer" data-question-target="answer" type="radio" name="question" value="0">
                     <span>NÃO VOU RESPONDER</span>
                     <span class="option-icon"></span>
                 </label>

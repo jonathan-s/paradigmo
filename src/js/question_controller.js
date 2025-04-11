@@ -7,7 +7,8 @@ class QuestionController extends Controller {
     "type",
     "theme",
     "next",
-    "previous"
+    "previous",
+    "answer"
   ]
 
   async initialize() {
@@ -16,6 +17,7 @@ class QuestionController extends Controller {
 
   connect() {
     this.currentQuestion = 0
+    this.userAnswers = {}
   }
 
   init(event) {
@@ -36,7 +38,11 @@ class QuestionController extends Controller {
 
   previous() {
     this.setQuestion(this.currentQuestion - 1)
+  }
 
+  answer(event) {
+    this.userAnswers[this.currentQuestion] = parseInt(event.target.value)
+    this.next()
   }
 
   async loadJSON() {

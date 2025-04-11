@@ -59,6 +59,7 @@ class QuestionController extends Controller {
   previous() {
     this.setQuestion(this.currentQuestion - 1)
     this.setExistingAnswer()
+    this.canProceed()
     console.log(this.userAnswers)
   }
 

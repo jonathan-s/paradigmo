@@ -1,0 +1,29 @@
+@import "questions.css";
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5e9c3;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+}
+
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.option-icon {
+    font-size: 20px;
+}

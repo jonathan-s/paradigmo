@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Survey Interface</title>
-    <link rel="stylesheet" href="./main.css" type="text/css" media="all">
+    <link rel="stylesheet" href="./css/main.css" type="text/css" media="all">
 </head>
 <body>
     <div class="container">
@@ -14,36 +14,41 @@
         </div>
 
         <div class="content-box">
-            <div class="category">Económico - Saúde</div>
             <div class="question-text">
+                <div class="category">Económico - Saúde</div>
                 A gestão pública tende a ser pior do que a gestão privada, pelo que os cuidados de saúde públicos são normalmente inferiores aos seguros de saúde patrocinados pelo Estado, onde os cidadãos procuram cuidados de saúde junto de prestadores privados.
             </div>
 
             <div class="options">
-                <div class="option agree-totally">
+                <label class="option agree-totally">
+                    <input type="radio" value="2">
                     <span>CONCORDO TOTALMENTE</span>
                     <span class="option-icon">👍👍</span>
-                </div>
-                <div class="option agree-partially">
+                </label>
+                <label class="option agree-partially">
+                    <input type="radio" value="1">
                     <span>CONCORDO PARCIALMENTE</span>
                     <span class="option-icon">👍</span>
-                </div>
-                <div class="option neutral">
+                </label>
+                <label class="option neutral">
+                    <input type="radio" value="0">
                     <span>POSIÇÃO NEUTRA</span>
                     <span class="option-icon"></span>
-                </div>
-                <div class="option disagree-partially">
+                </label>
+                <label class="option disagree-partially">
+                    <input type="radio" value="-1">
                     <span>DISCORDO PARCIALMENTE</span>
                     <span class="option-icon">👎</span>
-                </div>
-                <div class="option disagree-totally">
+                </label>
+                <label class="option disagree-totally">
+                    <input type="radio" value="-2">
                     <span>DISCORDO TOTALMENTE</span>
                     <span class="option-icon">👎👎</span>
-                </div>
-                <div class="option no-answer">
+                </label>
+                <label class="option no-answer">
                     <span>NÃO VOU RESPONDER</span>
                     <span class="option-icon"></span>
-                </div>
+                </label>
             </div>
         </div>
 

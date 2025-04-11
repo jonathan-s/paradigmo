@@ -1,5 +1,7 @@
 {
   "port": 8085,
   "root": "src",
-  "open": "index.html"
+  "open": "index.html",
+  "watch": "src",
+  "injectCss": false
 }

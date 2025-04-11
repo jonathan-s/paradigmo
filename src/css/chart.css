@@ -1,0 +1,151 @@
+.dotted-spaced {
+    background-image: linear-gradient(to right, #333 10%, rgba(255, 255, 255, 0) 0%);
+    background-position: top;
+    background-size: 20px 20px;
+    background-repeat: repeat-x;
+}
+
+.left.dotted-spaced {
+    background-image: linear-gradient(to bottom, #333 10%, rgba(255, 255, 255, 0) 0%);
+    background-position: left;
+    background-size: 20px 20px;
+    background-repeat: repeat-y;
+}
+
+.chart {
+    max-width: var(--max-width);
+    margin-top: 30px;
+    background-color: #faf3e3;
+    border-radius: 24px;
+    padding: 20px;
+    /* change this for mobile so that it becomes a bit thinner. */
+    height: var(--max-width);
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.axis-label {
+    position: absolute;
+    font-weight: bold;
+    color: #333;
+    text-transform: uppercase;
+}
+
+.top-label {
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.bottom-label {
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.left-label {
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+    transform-origin: center;
+}
+
+.right-label {
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    transform-origin: center;
+}
+
+.party {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 12px;
+    color: white;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.grid-line {
+    position: absolute;
+    background-color: #f0e0c0;
+    z-index: 0;
+}
+
+.horizontal-line {
+    width: 90%;
+    height: 1px;
+    left: 5%;
+}
+
+.vertical-line {
+    height: 90%;
+    width: 1px;
+    top: 5%;
+}
+
+/* Main axes */
+.main-horizontal {
+    left: 15%;
+    top: 50%;
+    width: 90%;
+    height: 2px;
+    width: 70%;
+    position: absolute;
+}
+
+.main-vertical {
+    top: 5%;
+    left: 50%;
+    height: 90%;
+    width: 2px;
+    position: absolute;
+}
+
+/* Party placeholder styles */
+.ps {
+    background-color: #4a90e2;
+}
+
+/* Partido Socialista (blue circle) */
+.be {
+    background-color: #e74c3c;
+}
+
+/* Bloco de Esquerda (red figure) */
+.pcp {
+    background-color: #c0392b;
+}
+
+/* PCP (hammer and sickle) */
+.chega {
+    background-color: #f1c40f;
+}
+
+/* Chega (yellow logo) */
+.ad {
+    background-color: #e67e22;
+}
+
+/* AD (orange logo) */
+.volt {
+    background-color: #8e44ad;
+}
+
+/* Volt (purple logo) */
+.pan {
+    background-color: #27ae60;
+}
+
+/* PAN (green logo) */
+.il {
+    background-color: #3498db;
+}
+
+/* IL (light blue logo) */

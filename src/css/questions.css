@@ -51,14 +51,18 @@
   margin-top: 30px;
 }
 
+.btn {
+  border-radius: var(--button-radius);
+  cursor: pointer;
+  padding: 14px 23px;
+  display: flex;
+}
+
 .nav-button {
   padding: 12px 25px;
-  border-radius: 25px;
-  cursor: pointer;
   font-weight: bold;
   border: 1px solid #333;
   background-color: transparent;
-  display: flex;
   align-items: center;
   gap: 8px;
 }
@@ -69,7 +73,6 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-  max-width: 200px;
   margin-bottom: 40px;
 
   .question-title {
@@ -84,7 +87,7 @@
     background-color: #F9F2E5;
     border-top-left-radius: 25px;
     border-bottom-right-radius: 25px;
-    padding: 16px 32px;
+    padding: 14px 32px;
     font-size: 18px;
     min-width: 70px;
   }
@@ -97,14 +100,19 @@
 
 .content-box {
   background-color: #F9F2E5;
-  border-top-left-radius: 50px;
-  border-bottom-right-radius: 50px;
+  border-top-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
   padding: 30px;
   padding-left: 40px;
   padding-top: 40px;
   display: flex;
   justify-content: space-between;
   gap: 50px;
+
+  img {
+    width: 16px;
+    color: white;
+  }
 
   input[type="radio"] {
     display: none;
@@ -123,13 +131,10 @@
     margin-bottom: 15px;
   }
 
-  .option {
-    padding: 12px 20px;
-    border-radius: 25px;
-    display: flex;
+  .select-btn {
+    border-radius: var(--button-radius);
     justify-content: space-between;
     align-items: center;
-    cursor: pointer;
     font-weight: bold;
     color: white;
     min-width: 280px;

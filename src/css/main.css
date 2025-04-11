@@ -1,5 +1,8 @@
+@import "variables.css";
 @import "questions.css";
 @import "poll.css";
+@import "chart.css";
+@import "typography.css";
 
 body {
     font-family: 'Arial', sans-serif;
@@ -9,11 +12,19 @@ body {
     min-height: 100vh;
 }
 
+svg {
+  vector-effect: non-scaling-stroke;
+}
+
+div {
+    box-sizing: border-box;
+}
+
 .title { text-transform: capitalize; }
 
 .container {
     width: 100%;
-    max-width: 800px;
+    max-width: 896px;
     padding: 20px;
 }
 

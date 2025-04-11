@@ -61,38 +61,48 @@
                         <span data-question-target="type" class="title"></span> -
                         <span data-question-target="theme" class="title"></span>
                     </div>
-                    <span data-question-target="question" data-action="question:ready@window->question#init">
+                    <span class="text-l" data-question-target="question" data-action="question:ready@window->question#init">
                         loading...
                     </span>
                 </div>
 
                 <div class="options">
-                    <label class="option agree-totally">
+                    <label class="btn select-btn agree-totally">
                         <input data-action="question#answer" data-question-target="answer" type="radio" name="question" value="2">
                         <span>CONCORDO TOTALMENTE</span>
-                        <span class="option-icon">👍👍</span>
+                        <span class="option-icon">
+                            <img src="./images/okhand.svg">
+                            <img src="./images/okhand.svg">
+                        </span>
                     </label>
-                    <label class="option agree-partially">
+                    <label class="btn select-btn agree-partially">
                         <input data-action="question#answer" data-question-target="answer" type="radio" name="question" value="1">
                         <span>CONCORDO PARCIALMENTE</span>
-                        <span class="option-icon">👍</span>
+                        <span class="option-icon">
+                            <img src="./images/okhand.svg">
+                        </span>
                     </label>
-                    <label class="option neutral">
+                    <label class="btn select-btn neutral">
                         <input data-action="question#answer" data-question-target="answer" type="radio" name="question" value="0">
                         <span>POSIÇÃO NEUTRA</span>
                         <span class="option-icon"></span>
                     </label>
-                    <label class="option disagree-partially">
+                    <label class="btn select-btn disagree-partially">
                         <input data-action="question#answer" data-question-target="answer" type="radio" name="question" value="-1">
                         <span>DISCORDO PARCIALMENTE</span>
-                        <span class="option-icon">👎</span>
+                        <span class="option-icon">
+                            <img src="./images/not_ok_hand.svg">
+                        </span>
                     </label>
-                    <label class="option disagree-totally">
+                    <label class="btn select-btn disagree-totally">
                         <input data-action="question#answer" data-question-target="answer" type="radio" name="question" value="-2">
                         <span>DISCORDO TOTALMENTE</span>
-                        <span class="option-icon">👎👎</span>
+                        <span class="option-icon">
+                            <img src="./images/not_ok_hand.svg">
+                            <img src="./images/not_ok_hand.svg">
+                        </span>
                     </label>
-                    <label class="option no-answer">
+                    <label class="btn select-btn no-answer">
                         <input data-action="question#answer" data-question-target="answer" type="radio" name="question" value="NaN">
                         <span>NÃO VOU RESPONDER</span>
                         <span class="option-icon"></span>
@@ -101,30 +111,79 @@
             </div>
 
             <div class="navigation">
-                <button data-question-target="previous" data-action="question#previous" class="nav-button">← VOLTAR</button>
-                <button data-question-target="next" data-action="question#next" class="nav-button">PRÓXIMA →</button>
+                <button data-question-target="previous" data-action="question#previous" class="btn nav-button">← VOLTAR</button>
+                <button data-question-target="next" data-action="question#next" class="btn nav-button">PRÓXIMA →</button>
+            </div>
+
+            <div class="content-box poll-box">
+                <div class="party-row">
+                    <img src="/api/placeholder/24/24" alt="PS"\>
+                    <div class="party-bar-container" style="flex-grow: 69">
+                        <div class="party-name">PARTIDO SOCIALISTA</div>
+                    </div>
+                    <div style="flex-grow: 31"></div>
+                    <div class="party-percentage">69%</div>
+                </div>
+
+                <div class="party-row">
+                    <img src="/api/placeholder/24/24" alt="PS"\>
+                    <div class="party-bar-container" style="flex-grow: 69">
+                        <div class="party-name">PARTIDO SOCIALISTA</div>
+                    </div>
+                    <div style="flex-grow: 31"></div>
+                    <div class="party-percentage">69%</div>
+                </div>
+            </div>
+
+            <div class="content-box chart">
+
+                <!-- Axis labels -->
+                <div class="axis-label top-label">Progressista</div>
+                <div class="axis-label bottom-label">Conservador</div>
+                <div class="axis-label left-label">Esquerda</div>
+                <div class="axis-label right-label">Direita</div>
+
+                <!-- Grid lines -->
+                <div class="main-horizontal dotted-spaced"></div>
+                <div class="main-vertical left dotted-spaced"></div>
+
+                <!-- Dotted grid lines -->
+
+                <!-- Parties positioned on the chart -->
+                <!-- Partido Socialista - blue circle -->
+                <div class="party ps" style="left: 40%; top: 45%">PS</div>
+
+                <!-- Bloco de Esquerda - red star/figure -->
+                <div class="party be" style="left: 35%; top: 35%">BE</div>
+
+                <!-- PCP - hammer and sickle -->
+                <div class="party pcp" style="left: 15%; top: 75%">PCP</div>
+
+                <!-- Chega - in different positions -->
+                <div class="party chega" style="left: 70%; top: 20%">CH</div>
+                <div class="party chega" style="left: 35%; top: 80%">CH</div>
+
+                <!-- AD - orange -->
+                <div class="party ad" style="left: 65%; top: 40%">AD</div>
+                <div class="party ad" style="left: 55%; top: 75%">AD</div>
+                <div class="party ad" style="left: 20%; top: 85%">AD</div>
+
+                <!-- Volt - purple -->
+                <div class="party volt" style="left: 65%; top: 60%">VT</div>
+
+                <!-- PAN - green -->
+                <div class="party pan" style="left: 60%; top: 65%">PAN</div>
+
+                <!-- IL - liberal initiative -->
+                <div class="party il" style="left: 55%; top: 65%">IL</div>
+
+                <!-- Extra circles for left side -->
+                <div class="party be" style="left: 18%; top: 65%">PS</div>
+                <div class="party be" style="left: 25%; top: 75%">PS</div>
             </div>
         </div>
 
-        <div class="content-box poll-box">
-            <div class="party-row">
-                <img src="/api/placeholder/24/24" alt="PS"\>
-                <div class="party-bar-container" style="flex-grow: 69">
-                    <div class="party-name">PARTIDO SOCIALISTA</div>
-                </div>
-                <div style="flex-grow: 31"></div>
-                <div class="party-percentage">69%</div>
-            </div>
 
-            <div class="party-row">
-                <img src="/api/placeholder/24/24" alt="PS"\>
-                <div class="party-bar-container" style="flex-grow: 69">
-                    <div class="party-name">PARTIDO SOCIALISTA</div>
-                </div>
-                <div style="flex-grow: 31"></div>
-                <div class="party-percentage">69%</div>
-            </div>
-        </div>
     </main>
 
     <script id="data-questions" type="application/json" src="./questions.json"></script>

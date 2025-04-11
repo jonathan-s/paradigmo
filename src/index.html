@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Interface</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5e9c3;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .question-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .question-number {
+            background-color: #fff;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .content-box {
+            background-color: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .category {
+            color: #c9933e;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .question-text {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            padding: 12px 20px;
+            border-radius: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: bold;
+            color: white;
+        }
+
+        .option-icon {
+            font-size: 20px;
+        }
+
+        .agree-totally {
+            background-color: #0a712f;
+        }
+
+        .agree-partially {
+            background-color: #5e7725;
+        }
+
+        .neutral {
+            background-color: #c9933e;
+        }
+
+        .disagree-partially {
+            background-color: #f15a29;
+        }
+
+        .disagree-totally {
+            background-color: #e62e2d;
+        }
+
+        .no-answer {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            color: #666;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .nav-button {
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            border: 1px solid #333;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .yellow-stripe {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            width: 30px;
+            background-color: #f9d56e;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="question-header">
+            <div class="question-title">Questão</div>
+            <div class="question-number">8 / 24</div>
+        </div>
+
+        <div class="content-box">
+            <div class="category">Económico - Saúde</div>
+            <div class="question-text">
+                A gestão pública tende a ser pior do que a gestão privada, pelo que os cuidados de saúde públicos são normalmente inferiores aos seguros de saúde patrocinados pelo Estado, onde os cidadãos procuram cuidados de saúde junto de prestadores privados.
+            </div>
+
+            <div class="options">
+                <div class="option agree-totally">
+                    <span>CONCORDO TOTALMENTE</span>
+                    <span class="option-icon">👍👍</span>
+                </div>
+                <div class="option agree-partially">
+                    <span>CONCORDO PARCIALMENTE</span>
+                    <span class="option-icon">👍</span>
+                </div>
+                <div class="option neutral">
+                    <span>POSIÇÃO NEUTRA</span>
+                    <span class="option-icon"></span>
+                </div>
+                <div class="option disagree-partially">
+                    <span>DISCORDO PARCIALMENTE</span>
+                    <span class="option-icon">👎</span>
+                </div>
+                <div class="option disagree-totally">
+                    <span>DISCORDO TOTALMENTE</span>
+                    <span class="option-icon">👎👎</span>
+                </div>
+                <div class="option no-answer">
+                    <span>NÃO VOU RESPONDER</span>
+                    <span class="option-icon"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-button">← VOLTAR</button>
+            <button class="nav-button">PRÓXIMA →</button>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,5 +1,9 @@
 :root {
+    --bg-color: #FFE8C2;
+    --bg-card: #FFF5E0;
+
     --max-width: 896px;
     --border-radius: 56px;
     --button-radius: 42px;
+
 }

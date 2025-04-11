@@ -2,7 +2,7 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f5e9c3;
+    background-color: #F2E3C4;
     margin: 0;
     padding: 0;
     display: flex;
@@ -22,6 +22,12 @@ body {
     display: flex;
     flex-direction: column;
     gap: 12px;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .option-icon {

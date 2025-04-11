@@ -13,6 +13,7 @@ class QuestionController extends Controller {
 
   async initialize() {
     await this.loadQuestions()
+    await this.loadOpinions()
   }
 
   connect() {
@@ -83,6 +84,16 @@ class QuestionController extends Controller {
       this.questions = data
       this.dispatch("ready")
       return data;
+    } catch (error) {
+      console.error('Error loading JSON:', error);
+    }
+  }
+
+  async loadOpinions() {
+    try {
+      const response = await fetch('./party_opinion.json');
+      const data = await response.json();
+      this.opinions = data
     } catch (error) {
       console.error('Error loading JSON:', error);
     }

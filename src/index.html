@@ -58,7 +58,7 @@
                     <span class="option-icon">👎👎</span>
                 </label>
                 <label class="option no-answer">
-                    <input data-action="question#answer" data-question-target="answer" type="radio" name="question" value="0">
+                    <input data-action="question#answer" data-question-target="answer" type="radio" name="question" value="NaN">
                     <span>NÃO VOU RESPONDER</span>
                     <span class="option-icon"></span>
                 </label>
@@ -66,8 +66,8 @@
         </div>
 
         <div class="navigation">
-            <button data-action="question#previous" class="nav-button">← VOLTAR</button>
-            <button data-action="question#next" class="nav-button">PRÓXIMA →</button>
+            <button data-question-target="previous" data-action="question#previous" class="nav-button">← VOLTAR</button>
+            <button data-question-target="next" data-action="question#next" class="nav-button">PRÓXIMA →</button>
         </div>
     </div>
     <script id="data-questions" type="application/json" src="./questions.json"></script>

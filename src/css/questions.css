@@ -80,11 +80,11 @@
 
   .question-number {
     font-style: italic;
-    gap: 5px;
+    gap: 15px;
     background-color: #F9F2E5;
     border-top-left-radius: 25px;
     border-bottom-right-radius: 25px;
-    padding: 8px 16px;
+    padding: 16px 32px;
     font-size: 18px;
     min-width: 70px;
   }

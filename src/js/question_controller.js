@@ -1,5 +1,28 @@
 import { Application, Controller } from "./stimulus.js";
 
+function answerObj() {
+  const answersObject = {};
+  for (let i = 0; i <= 58; i++) {
+    answersObject[i] = 2;
+  }
+  return answersObject
+}
+
+const createCircle = (percent) => {
+  let circleTemplate = document.getQuerySelector("#circleFragment")
+  parser = new DOMParser()
+  let svg = parser.parseFromString(circleTemplate.innerHTML, 'image/svg+xml').documentElement
+
+  let circumference = 2* Math.pi * 80 // is a set value in svg
+  let offset = (1 - percentage) * circumference
+  let number = Math.round(percent * 100, 0)
+
+  svg.getQuerySelector("#circle-fill").setAttribute("stroke-dashoffset", offset)
+  svg.getQuerySelector("#circle-percent").innerText = number
+  return svg
+}
+
+
 class QuestionController extends Controller {
   static targets = [
     "question",
@@ -8,7 +31,8 @@ class QuestionController extends Controller {
     "theme",
     "next",
     "previous",
-    "answer"
+    "answer",
+    "circleFragment"
   ]
 
   async initialize() {
@@ -22,6 +46,10 @@ class QuestionController extends Controller {
   }
 
   init(event) {
+    // Test the last questions.
+    this.userAnswers = answerObj()
+    this.currentQuestion = 58
+
     this.setQuestion(this.currentQuestion)
   }
 

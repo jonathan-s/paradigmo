@@ -7,69 +7,117 @@
     <link rel="stylesheet" href="./css/main.css" type="text/css" media="all">
 </head>
 <body>
-    <div class="container" data-controller="question">
-        <div class="center">
-            <div class="question-header">
-                <div class="question-title">Questão</div>
-                <div class="question-number center">
-                    <span class="current-number" data-question-target="number">1</span>
-                    /
-                    <span>24</span>
+    <main class="center flex-column">
+        <div class="container" data-controller="question">
+
+            <template id="circleFragment" data-question-target="circleFragment">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Background Circle (beige) -->
+                    <circle cx="100" cy="100" r="80" fill="none" stroke="#f5e9c3" stroke-width="20" />
+
+                    <!-- Progress Circle (blue gradient) with stroke-dasharray and stroke-dashoffset to show 69% -->
+                    <circle
+                      cx="100"
+                      cy="100"
+                      r="80"
+                      fill="none"
+                      stroke="url(#blueGradient)"
+                      stroke-width="20"
+                      stroke-linecap=""
+                      stroke-dasharray="502.4"
+                      stroke-dashoffset="155.744"
+                      transform="rotate(-90, 100, 100)"
+                      id="circle-fill"
+                    />
+
+                    <!-- Text in the center -->
+                    <text x="100" y="100" id="circle-percent" dominant-baseline="middle" text-anchor="middle" font-family="Arial, sans-serif" font-size="36" font-weight="bold">69%</text>
+
+                    <!-- Blue gradient definition -->
+                    <defs>
+                      <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#308CCE" />
+                        <stop offset="100%" stop-color="#91D0FE" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+            </template>
+
+            <div class="center">
+                <div class="question-header">
+                    <div class="question-title">Questão</div>
+                    <div class="question-number center">
+                        <span class="current-number" data-question-target="number">1</span>
+                        /
+                        <span>24</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="content-box">
+                <div class="question-text">
+                    <div class="category">
+                        <span data-question-target="type" class="title"></span> -
+                        <span data-question-target="theme" class="title"></span>
+                    </div>
+                    <span data-question-target="question" data-action="question:ready@window->question#init">
+                        loading...
+                    </span>
+                </div>
+
+                <div class="options">
+                    <label class="option agree-totally">
+                        <input data-action="question#answer" data-question-target="answer" type="radio" name="question" value="2">
+                        <span>CONCORDO TOTALMENTE</span>
+                        <span class="option-icon">👍👍</span>
+                    </label>
+                    <label class="option agree-partially">
+                        <input data-action="question#answer" data-question-target="answer" type="radio" name="question" value="1">
+                        <span>CONCORDO PARCIALMENTE</span>
+                        <span class="option-icon">👍</span>
+                    </label>
+                    <label class="option neutral">
+                        <input data-action="question#answer" data-question-target="answer" type="radio" name="question" value="0">
+                        <span>POSIÇÃO NEUTRA</span>
+                        <span class="option-icon"></span>
+                    </label>
+                    <label class="option disagree-partially">
+                        <input data-action="question#answer" data-question-target="answer" type="radio" name="question" value="-1">
+                        <span>DISCORDO PARCIALMENTE</span>
+                        <span class="option-icon">👎</span>
+                    </label>
+                    <label class="option disagree-totally">
+                        <input data-action="question#answer" data-question-target="answer" type="radio" name="question" value="-2">
+                        <span>DISCORDO TOTALMENTE</span>
+                        <span class="option-icon">👎👎</span>
+                    </label>
+                    <label class="option no-answer">
+                        <input data-action="question#answer" data-question-target="answer" type="radio" name="question" value="NaN">
+                        <span>NÃO VOU RESPONDER</span>
+                        <span class="option-icon"></span>
+                    </label>
                 </div>
             </div>
 
+            <div class="navigation">
+                <button data-question-target="previous" data-action="question#previous" class="nav-button">← VOLTAR</button>
+                <button data-question-target="next" data-action="question#next" class="nav-button">PRÓXIMA →</button>
+            </div>
         </div>
 
-        <div class="content-box">
-            <div class="question-text">
-                <div class="category">
-                    <span data-question-target="type" class="title"></span> -
-                    <span data-question-target="theme" class="title"></span>
+        <div class="content-box poll-box">
+            <div class="party-row">
+                <img src="/api/placeholder/24/24" alt="PS"\>
+                <div class="party-bar-container" style="flex-grow: 69">
+                    <div class="party-name">PARTIDO SOCIALISTA</div>
                 </div>
-                <span data-question-target="question" data-action="question:ready@window->question#init">
-                    loading...
-                </span>
-            </div>
-
-            <div class="options">
-                <label class="option agree-totally">
-                    <input data-action="question#answer" data-question-target="answer" type="radio" name="question" value="2">
-                    <span>CONCORDO TOTALMENTE</span>
-                    <span class="option-icon">👍👍</span>
-                </label>
-                <label class="option agree-partially">
-                    <input data-action="question#answer" data-question-target="answer" type="radio" name="question" value="1">
-                    <span>CONCORDO PARCIALMENTE</span>
-                    <span class="option-icon">👍</span>
-                </label>
-                <label class="option neutral">
-                    <input data-action="question#answer" data-question-target="answer" type="radio" name="question" value="0">
-                    <span>POSIÇÃO NEUTRA</span>
-                    <span class="option-icon"></span>
-                </label>
-                <label class="option disagree-partially">
-                    <input data-action="question#answer" data-question-target="answer" type="radio" name="question" value="-1">
-                    <span>DISCORDO PARCIALMENTE</span>
-                    <span class="option-icon">👎</span>
-                </label>
-                <label class="option disagree-totally">
-                    <input data-action="question#answer" data-question-target="answer" type="radio" name="question" value="-2">
-                    <span>DISCORDO TOTALMENTE</span>
-                    <span class="option-icon">👎👎</span>
-                </label>
-                <label class="option no-answer">
-                    <input data-action="question#answer" data-question-target="answer" type="radio" name="question" value="NaN">
-                    <span>NÃO VOU RESPONDER</span>
-                    <span class="option-icon"></span>
-                </label>
+                <div style="flex-grow: 31"></div>
+                <div class="party-percentage">69%</div>
             </div>
         </div>
+    </main>
 
-        <div class="navigation">
-            <button data-question-target="previous" data-action="question#previous" class="nav-button">← VOLTAR</button>
-            <button data-question-target="next" data-action="question#next" class="nav-button">PRÓXIMA →</button>
-        </div>
-    </div>
     <script id="data-questions" type="application/json" src="./questions.json"></script>
     <script type="module" src="./js/question_controller.js"></script>
 </body>

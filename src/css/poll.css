@@ -1,0 +1,55 @@
+
+.poll-box {
+    width: 700px;
+}
+
+
+.party-logo {
+    width: 30px;
+    height: 30px;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    border-radius: 50%;
+}
+
+.party-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 12px;
+    position: relative;
+    width: 100%;
+}
+
+.party-logo img {
+    max-width: 24px;
+    max-height: 24px;
+}
+
+.party-bar-container {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background: linear-gradient(to left, #4a90e2, #5ca0e6, #6eb1eb, #7ec2ef);
+}
+
+.party-name {
+    color: black;
+    padding-left: 15px;
+    font-weight: bold;
+    font-size: 14px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.party-percentage {
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    min-width: 30px;
+    text-align: right;
+}

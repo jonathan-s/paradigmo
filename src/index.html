@@ -7,19 +7,27 @@
     <link rel="stylesheet" href="./css/main.css" type="text/css" media="all">
 </head>
 <body>
-    <div class="container">
+    <div class="container" data-controller="question">
         <div class="center">
             <div class="question-header">
                 <div class="question-title">Questão</div>
-                <div class="question-number"> <span class="current-number">8</span> / 24</div>
+                <div class="question-number center">
+                    <span class="current-number" data-question-target="number">1</span>
+                    /
+                    <span>24</span>
+                </div>
             </div>
 
         </div>
 
         <div class="content-box">
             <div class="question-text">
-                <div class="category">Económico - Saúde</div>
-                A gestão pública tende a ser pior do que a gestão privada, pelo que os cuidados de saúde públicos são normalmente inferiores aos seguros de saúde patrocinados pelo Estado, onde os cidadãos procuram cuidados de saúde junto de prestadores privados.
+                <div class="category">
+                    <span data-question-target="type"></span> - <span data-question-target="theme"></span>
+                </div>
+                <span data-question-target="question" data-action="question:ready@window->question#init">
+                    loading...
+                </span>
             </div>
 
             <div class="options">
@@ -57,9 +65,11 @@
         </div>
 
         <div class="navigation">
-            <button class="nav-button">← VOLTAR</button>
-            <button class="nav-button">PRÓXIMA →</button>
+            <button data-action="question#previous" class="nav-button">← VOLTAR</button>
+            <button data-action="question#next" class="nav-button">PRÓXIMA →</button>
         </div>
     </div>
+    <script id="data-questions" type="application/json" src="./questions.json"></script>
+    <script type="module" src="./js/question_controller.js"></script>
 </body>
 </html>

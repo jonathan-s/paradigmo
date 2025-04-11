@@ -80,12 +80,13 @@
 
   .question-number {
     font-style: italic;
+    gap: 5px;
     background-color: #F9F2E5;
     border-top-left-radius: 25px;
     border-bottom-right-radius: 25px;
     padding: 8px 16px;
     font-size: 18px;
-    min-width: 55px;
+    min-width: 70px;
   }
 
   .current-number {
@@ -102,6 +103,7 @@
   padding-left: 40px;
   padding-top: 40px;
   display: flex;
+  justify-content: space-between;
   gap: 50px;
 
   input[type="radio"] {

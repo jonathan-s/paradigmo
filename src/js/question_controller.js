@@ -243,11 +243,15 @@ class ScrollController extends Controller {
     this.scrollTo(".question-box", 100)
   }
 
+  toResults() {
+    this.scrollTo("#party-box", 250)
+  }
+
   scrollTo(selector, offset) {
     var element = document.querySelector(selector);
     var headerOffset = 45;
     var elementPosition = element.getBoundingClientRect().top;
-    var offsetPosition = elementPosition - offset;
+    var offsetPosition = elementPosition + window.pageYOffset - offset;
 
     window.scrollTo({
          top: offsetPosition,

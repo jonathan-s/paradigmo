@@ -2,6 +2,8 @@ import csv
 import json
 import os
 
+import pandas as pd
+
 
 def questions_to_json():
     """
@@ -45,34 +47,36 @@ def questions_to_json():
         print(f"Error occurred: {str(e)}")
 
 
-def calculate_compass_scores(entity_answers, all_questions_list, question_multipliers):
+def calculate_compass_scores(party: str):
     """Calculates Economic, Social, and Political scores (-1 to 1) using multipliers."""
-    scores = {"Economic": 0.0, "Social": 0.0, "Political": 0.0}
-    econ_end = min(len(all_questions_list), NUM_ECONOMIC_QUESTIONS)
-    social_end = min(
-        len(all_questions_list), NUM_ECONOMIC_QUESTIONS + NUM_SOCIAL_QUESTIONS
-    )
-    political_end = min(len(all_questions_list), EXPECTED_TOTAL_QUESTIONS)
+    scores = {"economic": 0.0, "social": 0.0, "political": 0.0}
+
+    df = pd.read_csv("questions.csv")
+    social_q = df[df["type"] == "social"]
+    economic_q = df[df["type"] == "económico"]
+    political_q = df[df["type"] == "politicá"]
+
+    entity_answers = df[party]
+    multipliers = df["multiplier"]
+
     axis_definitions = {
-        "economic": all_questions_list[0:econ_end],
-        "social": all_questions_list[NUM_ECONOMIC_QUESTIONS:social_end],
-        "political": all_questions_list[
-            NUM_ECONOMIC_QUESTIONS + NUM_SOCIAL_QUESTIONS : political_end
-        ],
+        "economic": economic_q,
+        "social": social_q,
+        "political": political_q,
     }
     for axis_name, question_texts in axis_definitions.items():
-        if question_texts:
-            valid_answers = entity_answers.reindex(question_texts).dropna()
-            num_answered = len(valid_answers)
-            if num_answered > 0:
-                relevant_multipliers = question_multipliers.reindex(valid_answers.index)
-                weighted_score_sum = (valid_answers * relevant_multipliers).sum()
-                normalized_score = weighted_score_sum / (num_answered * 2.0)
-                scores[axis_name] = max(-1.0, min(1.0, normalized_score))
-    return scores["Economic"], scores["Social"], scores["Political"]
+        valid_answers = entity_answers[question_texts.index]
+        relevant_multipliers = multipliers[valid_answers.index]
+
+        num_answered = len(valid_answers)
+        weighted_score_sum = (valid_answers * relevant_multipliers).sum()
+        normalized_score = weighted_score_sum / (num_answered * 2.0)
+        scores[axis_name] = max(-1.0, min(1.0, normalized_score))
+    return scores
 
 
 def convert_numeric_columns():
+    """Probably not needed"""
     # Path to the CSV file
     csv_path = "questions.csv"
 
@@ -151,10 +155,12 @@ def convert_party_info():
             # Process each row
             for row in reader:
                 party_key = row["party_key"]
+                score = calculate_compass_scores(party_key)
                 party_data[party_key] = {
                     "fullname": row["fullname"],
                     "leaning": row["leaning"],
                     "blurb": row["party_blurb"],
+                    **score,
                 }
 
         # Write to JSON file
@@ -168,6 +174,7 @@ def convert_party_info():
 
     except Exception as e:
         print(f"Error occurred: {str(e)}")
+        raise
 
 
 if __name__ == "__main__":

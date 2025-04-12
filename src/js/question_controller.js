@@ -9,24 +9,68 @@ function answerObj() {
 }
 
 const createCircle = (percent) => {
-  let circleTemplate = document.getQuerySelector("#circleFragment")
-  parser = new DOMParser()
-  let svg = parser.parseFromString(circleTemplate.innerHTML, 'image/svg+xml').documentElement
-
   let circumference = 2* Math.pi * 80 // is a set value in svg
-  let offset = (1 - percentage) * circumference
+  let offset = (1 - percent) * circumference
   let number = Math.round(percent * 100, 0)
 
-  svg.getQuerySelector("#circle-fill").setAttribute("stroke-dashoffset", offset)
-  svg.getQuerySelector("#circle-percent").innerText = number
+  let svg = `
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#f5e9c3" stroke-width="20"></circle>
+
+          <circle cx="100" cy="100" r="80" fill="none" stroke="url(#blueGradient)" stroke-width="20"
+              stroke-linecap="" stroke-dasharray="502.4" stroke-dashoffset="${offset}"
+              transform="rotate(-90, 100, 100)" id="circle-fill"></circle>
+
+          <text x="100" y="100" id="circle-percent" dominant-baseline="middle" text-anchor="middle"
+              font-family="Arial, sans-serif" font-size="36" font-weight="bold">${number}</text>
+
+          <defs>
+              <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#308CCE"></stop>
+                  <stop offset="100%" stop-color="#91D0FE"></stop>
+              </linearGradient>
+          </defs>
+    </svg>
+  `
+  let parser = new DOMParser()
+  svg = parser.parseFromString(svg, 'image/svg+xml').documentElement
   return svg
+}
+
+const createParty = (party, percent) => {
+  let svg = createCircle(percent)
+  let data = `
+      <div class="content-box party-box">
+        <div class="party-card">
+            <div class="left-column">
+                <div>
+                    <div class="logo-placeholder mb-5"></div>
+                    <h3>${party.fullname}</h3>
+                    <div class="text-secondary text-ss italic">${party.leaning}</div>
+                </div>
+                <p class="party-description text-ss mt-2">${party.blurb}</p>
+            </div>
+            <div class="right-column">
+            </div>
+        </div>
+    </div>
+  `
+  let parser = new DOMParser()
+  let div = parser.parseFromString(data, "text/html")
+
+  try {
+    div.querySelector(".right-column").insertAdjacentElement(0, svg)
+  } catch (e){
+    console.error(e)
+  }
+
+  return div
 }
 
 const questionContent = `
 
 
 `
-
 
 class QuestionController extends Controller {
   static targets = [
@@ -138,6 +182,10 @@ class QuestionController extends Controller {
   showResults() {
     this.resultTarget.classList.remove("hidden")
     this.resultTarget.classList.remove("invisible")
+    let div = document.createElement("div")
+
+    div.innerHTML = createParty(this.parties.ad, 0.69)
+    this.resultTarget.insertAdjacentElement(0, div)
   }
 
   review() {
@@ -177,7 +225,7 @@ class QuestionController extends Controller {
     try {
       const response = await fetch('./party_info.json');
       const data = await response.json();
-      this.opinions = data
+      this.parties = data
     } catch (error) {
       console.error('Error loading JSON:', error);
     }

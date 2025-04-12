@@ -52,30 +52,6 @@
 
 
         <div class="container question-box" data-controller="question">
-            <template id="circleFragment" data-question-target="circleFragment">
-                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Background Circle (beige) -->
-                    <circle cx="100" cy="100" r="80" fill="none" stroke="#f5e9c3" stroke-width="20" />
-
-                    <!-- Progress Circle (blue gradient) with stroke-dasharray and stroke-dashoffset to show 69% -->
-                    <circle cx="100" cy="100" r="80" fill="none" stroke="url(#blueGradient)" stroke-width="20"
-                        stroke-linecap="" stroke-dasharray="502.4" stroke-dashoffset="155.744"
-                        transform="rotate(-90, 100, 100)" id="circle-fill" />
-
-                    <!-- Text in the center -->
-                    <text x="100" y="100" id="circle-percent" dominant-baseline="middle" text-anchor="middle"
-                        font-family="Arial, sans-serif" font-size="36" font-weight="bold">69%</text>
-
-                    <!-- Blue gradient definition -->
-                    <defs>
-                        <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" stop-color="#308CCE" />
-                            <stop offset="100%" stop-color="#91D0FE" />
-                        </linearGradient>
-                    </defs>
-                </svg>
-            </template>
-
             <div class="center">
                 <div class="question-header">
                     <h2>Questão</h2>
@@ -175,21 +151,6 @@
             <div
                 id="user-results" data-question-target="result"
             >
-                <div class="content-box party-box">
-                    <div class="party-card">
-                        <div class="left-column">
-                            <div>
-                                <div class="logo-placeholder mb-5"></div>
-                                <h3>Partido Socialista</h3>
-                                <div class="text-secondary text-ss italic">Centro-Esquerda</div>
-                            </div>
-                            <p class="party-description text-ss mt-2">O Partido de centro-esquerda que defende políticas sociais com economia de mercado.</p>
-                        </div>
-                        <div class="right-column">
-                            <div class="percentage-circle-placeholder">69%</div>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="content-box party-box">
                     <div class="party-row">

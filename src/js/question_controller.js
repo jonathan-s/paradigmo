@@ -290,8 +290,9 @@ class QuestionController extends Controller {
 
   init(event) {
     // Test the last questions.
-    this.userAnswers = mockAnswers(60)
-    this.currentQuestion = 23
+    // this.userAnswers = mockAnswers(60)
+    // this.currentQuestion = 23
+
     let questions = event.detail
 
     this.shortQuestions = questions.filter((q) => { return q.short })

@@ -62,21 +62,6 @@
     transform-origin: center;
 }
 
-.party {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    font-size: 12px;
-    color: white;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
 .grid-line {
     position: absolute;
     background-color: #f0e0c0;
@@ -112,44 +97,90 @@
     position: absolute;
 }
 
+.compass-container {
+    position: relative;
+    width: 100%;
+    margin: 25px 65px;
+    /* border: 1px solid black; */
+}
+
+.party {
+    position: absolute;
+    width: 60px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 12px;
+    color: white;
+    text-align: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
 /* Party placeholder styles */
-.ps {
-    background-color: #4a90e2;
+.ad {
+    background-image: url("../images/logos/ad.png");
 }
 
 /* Partido Socialista (blue circle) */
-.be {
-    background-color: #e74c3c;
+.adn {
+    background-image: url("../images/logos/adn.png");
 }
 
 /* Bloco de Esquerda (red figure) */
-.pcp {
-    background-color: #c0392b;
+.be {
+    background-image: url("../images/logos/be.png");
 }
 
 /* PCP (hammer and sickle) */
-.chega {
-    background-color: #f1c40f;
+.cdu {
+    background-image: url("../images/logos/cdu.png");
 }
 
 /* Chega (yellow logo) */
-.ad {
-    background-color: #e67e22;
+.chega {
+    background-image: url("../images/logos/chega.png");
 }
 
 /* AD (orange logo) */
-.volt {
-    background-color: #8e44ad;
+.il {
+    background-image: url("../images/logos/il.png");
 }
 
 /* Volt (purple logo) */
-.pan {
-    background-color: #27ae60;
+.jpp {
+    background-image: url("../images/logos/jpp.png");
 }
 
 /* PAN (green logo) */
-.il {
-    background-color: #3498db;
+.livre {
+    background-image: url("../images/logos/livre.png");
+}
+
+.nova {
+    background-image: url("../images/logos/nova.png");
+}
+
+.pan {
+    background-image: url("../images/logos/pan.png");
+}
+
+.pcp {
+    background-image: url("../images/logos/pcp.png");
+}
+
+.pctp {
+    background-image: url("../images/logos/pctp.png");
+}
+
+.ps {
+    background-image: url("../images/logos/ps.png");
+}
+
+.volt {
+    background-image: url("../images/logos/volt.png");
 }
 
 /* IL (light blue logo) */

@@ -162,6 +162,30 @@ const createCircle = (percent) => {
   return svg
 }
 
+const createChart = (parties) => {
+  let dots = ``
+
+  for (let p of parties) {
+    console.log(p)
+    dots = dots + `<div alt="${p.fullname}" class="party ${p.key}" style="left: ${p.left}; top: ${p.top}"></div>`
+  }
+  let html = `
+    <div class="text-s top-label">Progressista</div>
+    <div class="text-s bottom-label">Conservador</div>
+    <div class="text-s left-label">Esquerda</div>
+    <div class="text-s right-label">Direita</div>
+
+    <div class="main-horizontal dotted-spaced"></div>
+    <div class="main-vertical left dotted-spaced"></div>
+
+    <div class="relative compass-container">
+      ${dots}
+    </div>
+  `
+
+  return html
+}
+
 
 const createParty = (party, percent) => {
   let svg = createCircle(percent)
@@ -314,9 +338,10 @@ class QuestionController extends Controller {
     console.log("Result affinity")
     console.log(userAffinities)
 
+
     this.resultTarget.classList.remove("hidden")
     this.resultTarget.classList.remove("invisible")
-
+    document.querySelector("#chart").innerHTML = createChart(Object.values(this.parties))
     let data = createParty(this.parties.nova, 0.69)
     this.resultTarget.querySelector("#party-box").outerHTML = data
   }

@@ -29,6 +29,85 @@ function mockAnswers(count = 60) {
 }
 
 /**
+ * Calculate political party affinity scores based on question answers.
+ *
+ * @param {Object} userAnswers - Dictionary with question_id as key and user's answer (numeric) as value
+ * @param {Object} partyAnswers - Dictionary where keys are party names and values are dictionaries of {question_id: answer}
+ * @param {Array} questionIds - Optional list of question IDs to consider. If null, uses all keys in userAnswers
+ * @param {number} maxDiffPerQuestion - Maximum possible difference between answers for a single question
+ * @returns {Object} Dictionary of party names and their affinity scores (0-1 scale), sorted by descending affinity
+ */
+function calculatePartyAffinity(userAnswers, partyAnswers, questionIds = null, maxDiffPerQuestion = 4) {
+  // Use provided questionIds or all keys from userAnswers
+  questionIds = questionIds || Object.keys(userAnswers);
+
+  // Filter to only include questions the user answered
+  const answeredQuestions = questionIds.filter(qId => qId in userAnswers);
+  const numAnswered = answeredQuestions.length;
+
+  if (numAnswered === 0) {
+    return {};  // No answers to evaluate
+  }
+
+  // Calculate distance between user answers and each party's answers
+  const distances = {};
+  for (const [partyName, partyPositions] of Object.entries(partyAnswers)) {
+    let totalDifference = 0;
+    for (const questionId of answeredQuestions) {
+      if (questionId in partyPositions) {
+        const difference = Math.abs(userAnswers[questionId] - partyPositions[questionId]);
+        totalDifference += difference;
+      }
+    }
+    distances[partyName] = totalDifference;
+  }
+
+  // Calculate maximum possible distance
+  const maxPossibleDistance = maxDiffPerQuestion * numAnswered;
+
+  // Convert distances to affinity scores (0-1 scale)
+  const affinityScores = {};
+  for (const [party, distance] of Object.entries(distances)) {
+    affinityScores[party] = Math.max(0.0, Math.min(1.0, 1 - (distance / maxPossibleDistance)));
+  }
+
+  // Sort by descending affinity score
+  const sortedEntries = Object.entries(affinityScores).sort((a, b) => b[1] - a[1]);
+  const sortedScores = Object.fromEntries(sortedEntries);
+
+  return sortedScores;
+}
+
+/**
+ * Convert coordinates from (-1, 1) range to CSS position.
+ *
+ * @param {number} x - X coordinate in (-1, 1) range
+ * @param {number} y - Y coordinate in (-1, 1) range
+ * @returns {Object} Object with 'left' and 'top' as percentage strings
+ *
+ * Coordinate system:
+ * (-1, 1) is top-left
+ * (1, 1) is top-right
+ * (-1, -1) is bottom-left
+ * (1, -1) is bottom-right
+ */
+function tupleToCssPosition(x, y) {
+  // Map x from (-1, 1) to (0%, 100%)
+  const leftPercent = ((x + 1) / 2) * 100;
+
+  // Map y from (1, -1) to (0%, 100%)
+  // Note: We invert y because in CSS, top: 0% is the top of the container
+  // and top: 100% is the bottom, while in our coordinate system,
+  // y=1 is top and y=-1 is bottom
+  const topPercent = ((1 - y) / 2) * 100;
+
+  return {
+    left: `${leftPercent}%`,
+    top: `${topPercent}%`
+  };
+}
+
+/**
  * Calculates Economic, Social, and Political scores (-1 to 1) using multipliers.
  * @param {Array} questions - Array of question objects with properties type, multiplier, and answer
  * @returns {Object} Object containing economic, social, and political scores
@@ -68,7 +147,7 @@ function calculateCompassScores(questions) {
     scores[axisName] = Math.max(-1.0, Math.min(1.0, normalizedScore));
   }
 
-  return { ...scores };
+  return { ...scores, ...tupleToCssPosition(scores.economic, scores.social) };
 }
 
 const createCircle = (percent) => {
@@ -87,7 +166,7 @@ const createCircle = (percent) => {
 const createParty = (party, percent) => {
   let svg = createCircle(percent)
   let data = `
-      <div class="content-box party-box">
+      <div id="party-box" class="content-box party-box">
         <div class="party-card">
             <div class="left-column">
                 <div>
@@ -132,6 +211,7 @@ class QuestionController extends Controller {
   async initialize() {
     await this.loadQuestions()
     await this.loadPartyData()
+    await this.loadPartyAnswers()
   }
 
   connect() {
@@ -223,6 +303,17 @@ class QuestionController extends Controller {
   showResults() {
     let score = calculateCompassScores(Object.values(this.userAnswers))
     console.log(score)
+
+    let answers = {}
+    for (let q of Object.values(this.userAnswers)) {
+      answers[q.index] = q.answer
+    }
+    console.log(answers)
+    let userAffinities = calculatePartyAffinity(answers, this.partyAnswers)
+
+    console.log("Result affinity")
+    console.log(userAffinities)
+
     this.resultTarget.classList.remove("hidden")
     this.resultTarget.classList.remove("invisible")
 
@@ -270,6 +361,16 @@ class QuestionController extends Controller {
       const response = await fetch('./party_info.json');
       const data = await response.json();
       this.parties = data
+    } catch (error) {
+      console.error('Error loading JSON:', error);
+    }
+  }
+
+  async loadPartyAnswers() {
+    try {
+      const response = await fetch('./party_answers.json');
+      const data = await response.json();
+      this.partyAnswers = data
     } catch (error) {
       console.error('Error loading JSON:', error);
     }

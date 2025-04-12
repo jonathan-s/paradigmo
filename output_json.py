@@ -112,14 +112,14 @@ def make_party_answers():
 
     # Path to output JSON file
     output_dir = "src"
-    output_path = os.path.join(output_dir, "party_opinion.json")
+    output_path = os.path.join(output_dir, "party_answers.json")
 
     # Ensure the output directory exists
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
-    # Non-numeric columns to exclude
-    non_numeric_columns = ["pergunta", "type", "theme"]
+    # columns to exclude
+    non_numeric_columns = ["pergunta", "type", "theme", "short", "multiplier"]
 
     # Dictionary to store numeric data
     numeric_data = {}

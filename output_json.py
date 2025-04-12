@@ -26,13 +26,14 @@ def questions_to_json():
     try:
         with open(csv_path, "r", encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
-            for row in reader:
+            for num, row in enumerate(reader):
                 # Extract only the required fields
                 question = {
                     "pergunta": row["pergunta"],
                     "type": row["type"],
                     "theme": row["theme"],
                     "short": True if int(row["short"]) == 1 else False,
+                    "index": num,
                 }
                 questions.append(question)
 

@@ -25,19 +25,20 @@ const createCircle = (percent) => {
 
 class QuestionController extends Controller {
   static targets = [
-    "question",
-    "number",
-    "type",
-    "theme",
-    "next",
-    "previous",
     "answer",
-    "circleFragment"
+    "circleFragment",
+    "next",
+    "number",
+    "previous",
+    "question",
+    "theme",
+    "total_q",
+    "type",
   ]
 
   async initialize() {
     await this.loadQuestions()
-    await this.loadOpinions()
+    await this.loadPartyData()
   }
 
   connect() {
@@ -47,15 +48,24 @@ class QuestionController extends Controller {
 
   init(event) {
     // Test the last questions.
-    this.userAnswers = answerObj()
-    this.currentQuestion = 58
+    // this.userAnswers = answerObj()
+    // this.currentQuestion = 22
+    let questions = event.detail
 
+    this.shortQuestions = questions.filter((q) => { return q.short })
+    this.longQuestions = questions.filter((q) => { return !q.short })
+
+    this.questions = this.shortQuestions
+    this.totalQ = this.questions.length
+
+    console.log(this.shortQuestions, this.longQuestions)
     this.setQuestion(this.currentQuestion)
   }
 
   setQuestion(num) {
     this.currentQuestion = num
     this.questionTarget.innerHTML = this.questions[num].pergunta
+    this.total_qTarget.innerHTML = this.totalQ
     this.typeTarget.innerHTML = this.questions[num].type
     this.themeTarget.innerHTML = this.questions[num].theme
     this.numberTarget.innerHTML = this.currentQuestion + 1
@@ -102,7 +112,10 @@ class QuestionController extends Controller {
   }
 
   answer(event) {
-    this.userAnswers[this.currentQuestion] = parseInt(event.target.value)
+    this.userAnswers[this.currentQuestion] = {
+      answer: parseInt(event.target.value),
+      index: this.questions[this.currentQuestion].index
+    }
     this.canProceed()
   }
 
@@ -110,17 +123,16 @@ class QuestionController extends Controller {
     try {
       const response = await fetch('./questions.json');
       const data = await response.json();
-      this.questions = data
-      this.dispatch("ready")
+      this.dispatch("ready", {detail: data})
       return data;
     } catch (error) {
       console.error('Error loading JSON:', error);
     }
   }
 
-  async loadOpinions() {
+  async loadPartyData() {
     try {
-      const response = await fetch('./party_opinion.json');
+      const response = await fetch('./party_info.json');
       const data = await response.json();
       this.opinions = data
     } catch (error) {

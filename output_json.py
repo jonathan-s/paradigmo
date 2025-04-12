@@ -47,6 +47,32 @@ def questions_to_json():
         print(f"Error occurred: {str(e)}")
 
 
+def tuple_to_css_position(x, y):
+    """
+    Convert coordinates from (-1, 1) range to CSS position.
+
+    Parameters:
+    x, y: Coordinates in (-1, 1) range where:
+        (-1, 1) is top-left
+        (1, 1) is top-right
+        (-1, -1) is bottom-left
+        (1, -1) is bottom-right
+
+    Returns:
+    Dictionary with 'left' and 'top' as percentages
+    """
+    # Map x from (-1, 1) to (0%, 100%)
+    left_percent = ((x + 1) / 2) * 100
+
+    # Map y from (1, -1) to (0%, 100%)
+    # Note: We invert y because in CSS, top: 0% is the top of the container
+    # and top: 100% is the bottom, while in our coordinate system,
+    # y=1 is top and y=-1 is bottom
+    top_percent = ((1 - y) / 2) * 100
+
+    return {"left": f"{left_percent}%", "top": f"{top_percent}%"}
+
+
 def calculate_compass_scores(party: str):
     """Calculates Economic, Social, and Political scores (-1 to 1) using multipliers."""
     scores = {"economic": 0.0, "social": 0.0, "political": 0.0}
@@ -72,7 +98,9 @@ def calculate_compass_scores(party: str):
         weighted_score_sum = (valid_answers * relevant_multipliers).sum()
         normalized_score = weighted_score_sum / (num_answered * 2.0)
         scores[axis_name] = max(-1.0, min(1.0, normalized_score))
-    return scores
+
+    position = tuple_to_css_position(scores["economic"], scores["social"])
+    return {**scores, **position}
 
 
 def convert_numeric_columns():

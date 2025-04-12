@@ -81,12 +81,6 @@
   margin-bottom: 20px;
   margin-bottom: 40px;
 
-  .question-title {
-    font-size: 28px;
-    font-weight: bold;
-    color: #333;
-  }
-
   .question-number {
     font-style: italic;
     gap: 15px;

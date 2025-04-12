@@ -25,6 +25,15 @@
     max-width: 528px;
 }
 
+
+.down-button {
+    margin-top: 10%;
+    margin-bottom: 20%;
+    .arrow-down {
+        width: 20px;
+    }
+}
+
 .shape {
     max-width: 436px;
     position: relative;
@@ -41,6 +50,7 @@
         top: -20px;
         right: -650px;
         rotate: 3deg;
+        z-index: -99;
 
     }
 }

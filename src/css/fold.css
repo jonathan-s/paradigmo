@@ -59,7 +59,7 @@
     .blue-curve-div{
         --width: 3600px;
         position: absolute;
-        top: -45px;
+        top: -20px;
         right: -780px;
         rotate: 3deg;
         z-index: -99;
@@ -68,7 +68,7 @@
         border: 22px solid #94CDFF;
         border-bottom: 0;
         width: var(--width);
-        height: var(--width);
+        height: 2700px;
         z-index: -99;
     }
 }

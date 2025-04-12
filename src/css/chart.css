@@ -1,12 +1,12 @@
 .dotted-spaced {
-    background-image: linear-gradient(to right, #333 10%, rgba(255, 255, 255, 0) 0%);
+    background-image: linear-gradient(to right, var(--txt-secondary-col) 10%, rgba(255, 255, 255, 0) 0%);
     background-position: top;
     background-size: 20px 20px;
     background-repeat: repeat-x;
 }
 
 .left.dotted-spaced {
-    background-image: linear-gradient(to bottom, #333 10%, rgba(255, 255, 255, 0) 0%);
+    background-image: linear-gradient(to bottom, var(--txt-secondary-col) 10%, rgba(255, 255, 255, 0) 0%);
     background-position: left;
     background-size: 20px 20px;
     background-repeat: repeat-y;
@@ -16,12 +16,13 @@
     max-width: var(--max-width);
     margin-top: 30px;
     background-color: #faf3e3;
-    border-radius: 24px;
+    border-top-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
     padding: 20px;
+
     /* change this for mobile so that it becomes a bit thinner. */
     height: var(--max-width);
     position: relative;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
 .axis-label {
@@ -32,18 +33,21 @@
 }
 
 .top-label {
+    position: absolute;
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
 }
 
 .bottom-label {
+    position: absolute;
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
 }
 
 .left-label {
+    position: absolute;
     left: 20px;
     top: 50%;
     transform: translateY(-50%) rotate(-90deg);
@@ -51,6 +55,7 @@
 }
 
 .right-label {
+    position: absolute;
     right: 20px;
     top: 50%;
     transform: translateY(-50%) rotate(90deg);
@@ -92,11 +97,10 @@
 
 /* Main axes */
 .main-horizontal {
-    left: 15%;
+    left: 10%;
     top: 50%;
-    width: 90%;
+    width: 80%;
     height: 2px;
-    width: 70%;
     position: absolute;
 }
 

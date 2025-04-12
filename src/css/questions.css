@@ -126,7 +126,7 @@
   }
 
   .category {
-    color: #c9933e;
+    color: var(--txt-secondary-col);
     margin-bottom: 32px;
     font-style: italic;
   }

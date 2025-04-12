@@ -14,7 +14,30 @@
 </head>
 
 <body class="">
+
+    <template id="circle">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="100" cy="100" r="80" fill="none" stroke="#f5e9c3" stroke-width="20"></circle>
+
+        <circle cx="100" cy="100" r="80" fill="none" stroke="url(#blueGradient)" stroke-width="20"
+                stroke-linecap="" stroke-dasharray="502.4" stroke-dashoffset="${offset}"
+                transform="rotate(-90, 100, 100)" id="circle-fill"></circle>
+
+        <text x="100" y="100" id="circle-percent" dominant-baseline="middle" text-anchor="middle"
+                font-family="Arial, sans-serif" font-size="36" font-weight="bold">${number}</text>
+
+        <defs>
+            <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#308CCE"></stop>
+                <stop offset="100%" stop-color="#91D0FE"></stop>
+            </linearGradient>
+        </defs>
+        </svg>
+    </template>
+
+
     <main class="center flex-column">
+
         <div class="container fold-box title-box">
             <div class="flex logo">
                 <img src="./images/mark.svg" alt="" class="mark">
@@ -65,6 +88,7 @@
             </div>
 
             <div class="content-box" data-question-target="content" data-action="question:ready@window->question#init">
+
                 <div class="question-text">
                     <div class="category text-ss">
                         <span data-question-target="type" class="title"></span> -
@@ -148,9 +172,9 @@
                 </div>
             </div>
 
-            <div
-                id="user-results" data-question-target="result"
-            >
+            <div id="user-results" data-question-target="result">
+
+                <div id="party-box"></div>
 
                 <div class="content-box party-box">
                     <div class="party-row">

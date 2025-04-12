@@ -186,6 +186,7 @@ def convert_party_info():
                 party_key = row["party_key"]
                 score = calculate_compass_scores(party_key)
                 party_data[party_key] = {
+                    "key": party_key,
                     "fullname": row["fullname"],
                     "leaning": row["leaning"],
                     "blurb": row["party_blurb"],

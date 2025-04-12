@@ -23,11 +23,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    svg {
+        scale: 1.7;
+        margin-right: 32px;
+    }
 }
 
 .logo-placeholder {
     width: 150px;
-    height: 150px;
     border-radius: 50%;
 }
 

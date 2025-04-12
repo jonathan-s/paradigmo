@@ -159,20 +159,22 @@
                     <img src="./images/right_arrow.svg" class="arrow">
                 </button>
 
-                <div class="flex flex-column center auto hidden">
+                <div data-question-target="complete" class="flex flex-column center auto hidden">
                     <button class="btn nav-button">
                         Faça o teste completo
                         <img src="./images/star.svg" class="icon">
                     </button>
 
-                    <span class="text-s mt-4">
+                    <span class="text-s mt-4 btn" data-action="click->question#showResults">
                         Veja o resultado
                         <img src="./images/bars.svg" class="icon">
                     </span>
                 </div>
             </div>
 
-            <div id="user-results">
+            <div
+                id="user-results" data-question-target="result"
+            >
 
                 <div class="content-box">
                     <div class="party-card">

@@ -1,11 +1,12 @@
 @import "variables.css";
+@import "typography.css";
 @import "fold.css";
 @import "questions.css";
+@import "compatibility.css";
 @import "poll.css";
 @import "chart.css";
-@import "typography.css";
 
-* { transition: opacity 0.3s ease-in-out; }
+* { transition: opacity 0.3s ease-in-out 0.1s; }
 
 body {
     font-family: 'Arial', sans-serif;

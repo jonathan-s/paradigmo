@@ -32,11 +32,13 @@ class QuestionController extends Controller {
   static targets = [
     "answer",
     "content",
+    "complete",
     "circleFragment",
     "next",
     "number",
     "previous",
     "question",
+    "result",
     "theme",
     "total_q",
     "type",
@@ -113,6 +115,7 @@ class QuestionController extends Controller {
     if (num == this.shortQuestions.length) {
       this.nextTarget.classList.add("hidden")
       this.previousTarget.classList.add("hidden")
+      this.completeTarget.classList.remove("hidden")
       // should hide prev and next.
       this.contentTarget.innerHTML = `
         <div class="text-m center flex-column auto">
@@ -130,6 +133,11 @@ class QuestionController extends Controller {
       return true
     }
 
+  }
+
+  showResults() {
+    this.resultTarget.classList.remove("hidden")
+    this.resultTarget.classList.remove("invisible")
   }
 
   review() {

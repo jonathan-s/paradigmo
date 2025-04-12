@@ -4,11 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Survey Interface</title>
+    <style>
+        body {
+            font-family: Arial;
+        }
+    </style>
     <link rel="stylesheet" href="./css/main.css" type="text/css" media="all">
 </head>
-<body>
+<body class="">
     <main class="center flex-column">
-        <div class="container" data-controller="question">
+
+        <div class="container fold-box title-box">
+            <div class="flex logo">
+                <img src="./images/mark.svg" alt="" class="mark">
+                <h1>votómetro</h1>
+            </div>
+            <!-- TODO needs proper url here -->
+            <a href="#" class="github-logo"></a>
+        </div>
+
+        <div class="container fold-box">
+            <div class="blurb">
+                <h2>O seu partido ideal?</h2>
+                <p class="text-l">
+                    Ola! Construimos este site com o intuito de te ajudar a perceber o teu alinhamento político.
+                </p>
+                <p class="text-l">
+                    Far-lhe-emos várias perguntas, tentando perceber com qual partido e que a tua opinião se enquadra.
+                </p>
+            </div>
+            <div class="shape">
+                <img src="./images/red_curve.svg" class="red-curve">
+                <img src="./images/blue_curve.svg" alt="" class="blue-curve">
+                <img src="./images/shapes.svg" alt="" class="shape">
+            </div>
+        </div>
+
+
+        <div class="container question-box" data-controller="question">
             <template id="circleFragment" data-question-target="circleFragment">
                 <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                     <!-- Background Circle (beige) -->
@@ -110,8 +143,14 @@
             </div>
 
             <div class="navigation">
-                <button data-question-target="previous" data-action="question#previous" class="btn nav-button">← VOLTAR</button>
-                <button data-question-target="next" data-action="question#next" class="btn nav-button">PRÓXIMA →</button>
+                <button data-question-target="previous" data-action="question#previous" class="btn nav-button">
+                    <img src="./images/left_arrow.svg" class="arrow">
+                    VOLTAR
+                </button>
+                <button data-question-target="next" data-action="question#next" class="btn nav-button">
+                    PRÓXIMA
+                    <img src="./images/right_arrow.svg" class="arrow">
+                </button>
             </div>
 
             <div class="content-box poll-box">

@@ -49,23 +49,22 @@
   color: #666;
 }
 
+.question-box {
+  max-width: var(--max-width);
+}
 
 .navigation {
   display: flex;
   justify-content: space-between;
-  margin-top: 30px;
+  margin-top: 64px;
   padding: 0 48px;
-}
 
-.btn {
-  border-radius: var(--button-radius);
-  cursor: pointer;
-  padding: 14px 23px;
-  display: flex;
+  .arrow {
+    padding: 0 4px;
+  }
 }
 
 .nav-button {
-  padding: 12px 25px;
   font-weight: bold;
   border: 1px solid #333;
   background-color: transparent;

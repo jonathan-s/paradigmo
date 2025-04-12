@@ -1,0 +1,56 @@
+.fold-box {
+    max-width: var(--fold-width);
+    display: flex;
+    justify-content: space-between;
+}
+
+.title-box {
+    margin-top: 56px;
+    margin-bottom: 96px;
+}
+
+.logo {
+    gap: 24px;
+    flex-grow: 1;
+    align-items: flex-end;
+
+    .mark {
+        height: 46px;
+        margin-bottom: 5px;
+    }
+}
+
+.blurb {
+    margin-top: 32px;
+    max-width: 528px;
+}
+
+.shape {
+    max-width: 436px;
+    position: relative;
+    /* needs mobile version */
+    .red-curve {
+        position: absolute;
+        top: -230px;
+        right: -300px;
+
+    }
+
+    .blue-curve {
+        position: absolute;
+        top: -20px;
+        right: -650px;
+        rotate: 3deg;
+
+    }
+}
+
+
+
+.github-logo {
+    height: 40px;
+    width: 40px;
+    margin: 12px 0;
+    background-image: url("../images/github.svg");
+    background-size: 40px;
+}

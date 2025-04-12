@@ -3,7 +3,10 @@ import json
 import os
 
 
-def convert_csv_to_json():
+def questions_to_json():
+    """
+    Converts the questions to json format so that it can be handled by app.
+    """
     # Path to the CSV file
     csv_path = "questions.csv"
 
@@ -27,6 +30,7 @@ def convert_csv_to_json():
                     "pergunta": row["pergunta"],
                     "type": row["type"],
                     "theme": row["theme"],
+                    "short": True if int(row["short"]) == 1 else False,
                 }
                 questions.append(question)
 
@@ -39,6 +43,33 @@ def convert_csv_to_json():
 
     except Exception as e:
         print(f"Error occurred: {str(e)}")
+
+
+def calculate_compass_scores(entity_answers, all_questions_list, question_multipliers):
+    """Calculates Economic, Social, and Political scores (-1 to 1) using multipliers."""
+    scores = {"Economic": 0.0, "Social": 0.0, "Political": 0.0}
+    econ_end = min(len(all_questions_list), NUM_ECONOMIC_QUESTIONS)
+    social_end = min(
+        len(all_questions_list), NUM_ECONOMIC_QUESTIONS + NUM_SOCIAL_QUESTIONS
+    )
+    political_end = min(len(all_questions_list), EXPECTED_TOTAL_QUESTIONS)
+    axis_definitions = {
+        "economic": all_questions_list[0:econ_end],
+        "social": all_questions_list[NUM_ECONOMIC_QUESTIONS:social_end],
+        "political": all_questions_list[
+            NUM_ECONOMIC_QUESTIONS + NUM_SOCIAL_QUESTIONS : political_end
+        ],
+    }
+    for axis_name, question_texts in axis_definitions.items():
+        if question_texts:
+            valid_answers = entity_answers.reindex(question_texts).dropna()
+            num_answered = len(valid_answers)
+            if num_answered > 0:
+                relevant_multipliers = question_multipliers.reindex(valid_answers.index)
+                weighted_score_sum = (valid_answers * relevant_multipliers).sum()
+                normalized_score = weighted_score_sum / (num_answered * 2.0)
+                scores[axis_name] = max(-1.0, min(1.0, normalized_score))
+    return scores["Economic"], scores["Social"], scores["Political"]
 
 
 def convert_numeric_columns():
@@ -90,16 +121,15 @@ def convert_numeric_columns():
         with open(output_path, "w", encoding="utf-8") as jsonfile:
             json.dump(numeric_data, jsonfile, ensure_ascii=False)
 
-        print(
-            f"Successfully converted numeric columns to JSON. Output saved to {output_path}"
-        )
-        print(f"Total columns processed: {len(columns)}")
-
     except Exception as e:
         print(f"Error occurred: {str(e)}")
 
 
 def convert_party_info():
+    """
+    Convert the party info including the economic and social dimension.
+    """
+
     # Path to the CSV file
     csv_path = "party_info.csv"
 
@@ -141,6 +171,7 @@ def convert_party_info():
 
 
 if __name__ == "__main__":
-    convert_csv_to_json()
+    questions_to_json()
     convert_numeric_columns()
+    print("Successfully converted numeric columns to JSON.")
     convert_party_info()

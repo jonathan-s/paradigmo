@@ -66,7 +66,7 @@
         </div>
 
         <div class="container fold-box center down-button">
-            <button class="btn nav-button text-s">
+            <button class="btn nav-button text-s" data-controller="scroll" data-action="scroll#toQuestion">
                 <img src="./images/arrow_down.svg" alt="" class="arrow-down">
                 Diga a sua opinião
                 <img src="./images/arrow_down.svg" alt="" class="arrow-down">
@@ -172,7 +172,7 @@
                 </div>
             </div>
 
-            <div id="user-results" data-question-target="result">
+            <div id="user-results" class="hidden" data-question-target="result">
 
                 <div class="center mb-4" style="margin-top: 192px;">
                     <div class="question-header">

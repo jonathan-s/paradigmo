@@ -238,6 +238,25 @@ const questionContent = `
 
 `
 
+class ScrollController extends Controller {
+  toQuestion() {
+    this.scrollTo(".question-box", 100)
+  }
+
+  scrollTo(selector, offset) {
+    var element = document.querySelector(selector);
+    var headerOffset = 45;
+    var elementPosition = element.getBoundingClientRect().top;
+    var offsetPosition = elementPosition - offset;
+
+    window.scrollTo({
+         top: offsetPosition,
+         behavior: "smooth"
+    });
+  }
+}
+
+
 class QuestionController extends Controller {
   static targets = [
     "answer",
@@ -431,5 +450,6 @@ class QuestionController extends Controller {
 
 window.Stimulus = Application.start()
 Stimulus.register("question", QuestionController)
+Stimulus.register("scroll", ScrollController)
 
 console.log("hello world")

@@ -34,6 +34,7 @@ def questions_to_json():
                     "theme": row["theme"],
                     "short": True if int(row["short"]) == 1 else False,
                     "index": num,
+                    "multiplier": int(row["multiplier"]),
                 }
                 questions.append(question)
 
@@ -104,8 +105,8 @@ def calculate_compass_scores(party: str):
     return {**scores, **position}
 
 
-def convert_numeric_columns():
-    """Probably not needed"""
+def make_party_answers():
+    """"""
     # Path to the CSV file
     csv_path = "questions.csv"
 
@@ -132,23 +133,23 @@ def convert_numeric_columns():
                 col for col in reader.fieldnames if col not in non_numeric_columns
             ]
 
-            # Initialize empty lists for all numeric columns
-            for col in columns:
-                numeric_data[col] = []
+            # Initialize empty dicts for all numeric columns
+            for party in columns:
+                numeric_data[party] = {}
 
             # Process each row
-            for row in reader:
-                for col in columns:
+            for index, row in enumerate(reader):
+                for party in columns:
                     try:
                         # Try to convert to integer, handle "NaN" as null
-                        value = row[col]
+                        value = row[party]
                         if value == "NaN":
-                            numeric_data[col].append(None)
+                            numeric_data[party][index] = None
                         else:
-                            numeric_data[col].append(int(value))
+                            numeric_data[party][index] = int(value)
                     except (ValueError, TypeError):
                         # If conversion fails, keep as is
-                        numeric_data[col].append(row[col])
+                        numeric_data[party][index] = row[party]
 
         # Write to JSON file
         with open(output_path, "w", encoding="utf-8") as jsonfile:
@@ -209,6 +210,6 @@ def convert_party_info():
 
 if __name__ == "__main__":
     questions_to_json()
-    convert_numeric_columns()
+    make_party_answers()
     print("Successfully converted numeric columns to JSON.")
     convert_party_info()

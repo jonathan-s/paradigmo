@@ -1,11 +1,74 @@
 import { Application, Controller } from "./stimulus.js";
 
-function answerObj() {
-  const answersObject = {};
-  for (let i = 0; i <= 58; i++) {
-    answersObject[i] = 2;
+/**
+ * Generates mock user answers for testing political compass calculations
+ * @param {number} count - Number of answers to generate (default: 60)
+ * @returns {Object} Object with question indices as keys and mock answer objects as values
+ */
+function mockAnswers(count = 60) {
+  const types = ["social", "económico", "politicá"];
+  const mockAnswers = {};
+
+  for (let i = 0; i < count; i++) {
+    const type = types[Math.floor(Math.random() * types.length)];
+    const multiplier = Math.random() < 0.5 ? -1 : 1;
+
+    // Generate answer values between -2 and 2
+    // -2, -1, 0, 1, or 2
+    const answerValue = Math.floor(Math.random() * 5) - 2;
+
+    mockAnswers[i] = {
+      answer: answerValue,
+      index: i,
+      multiplier: multiplier,
+      type: type
+    };
   }
-  return answersObject
+
+  return mockAnswers;
+}
+
+/**
+ * Calculates Economic, Social, and Political scores (-1 to 1) using multipliers.
+ * @param {Array} questions - Array of question objects with properties type, multiplier, and answer
+ * @returns {Object} Object containing economic, social, and political scores
+ */
+function calculateCompassScores(questions) {
+  const scores = { economic: 0.0, social: 0.0, political: 0.0 };
+
+  // Filter questions by type
+  const socialQuestions = questions.filter(q => q.type === "social");
+  const economicQuestions = questions.filter(q => q.type === "económico");
+  const politicalQuestions = questions.filter(q => q.type === "politicá");
+
+  const axisDefinitions = {
+    economic: economicQuestions,
+    social: socialQuestions,
+    political: politicalQuestions
+  };
+
+  // Calculate scores for each axis
+  for (const [axisName, axisQuestions] of Object.entries(axisDefinitions)) {
+    // Extract answers and multipliers for this axis
+    const validAnswers = axisQuestions.map(q => q.answer);
+    const relevantMultipliers = axisQuestions.map(q => q.multiplier);
+
+    const numAnswered = validAnswers.length;
+
+    // Skip if no questions answered for this category
+    if (numAnswered === 0) continue;
+
+    // Calculate weighted sum
+    const weightedScoreSum = validAnswers.reduce((sum, answer, index) => {
+      return sum + (answer * relevantMultipliers[index]);
+    }, 0);
+
+    // Normalize score between -1 and 1
+    const normalizedScore = weightedScoreSum / (numAnswered * 2.0);
+    scores[axisName] = Math.max(-1.0, Math.min(1.0, normalizedScore));
+  }
+
+  return { ...scores };
 }
 
 const createCircle = (percent) => {
@@ -19,6 +82,7 @@ const createCircle = (percent) => {
   console.log(svg)
   return svg
 }
+
 
 const createParty = (party, percent) => {
   let svg = createCircle(percent)
@@ -77,7 +141,7 @@ class QuestionController extends Controller {
 
   init(event) {
     // Test the last questions.
-    this.userAnswers = answerObj()
+    this.userAnswers = mockAnswers(60)
     this.currentQuestion = 23
     let questions = event.detail
 
@@ -157,9 +221,10 @@ class QuestionController extends Controller {
   }
 
   showResults() {
+    let score = calculateCompassScores(Object.values(this.userAnswers))
+    console.log(score)
     this.resultTarget.classList.remove("hidden")
     this.resultTarget.classList.remove("invisible")
-    let div = document.createElement("div")
 
     let data = createParty(this.parties.nova, 0.69)
     this.resultTarget.querySelector("#party-box").outerHTML = data
@@ -182,7 +247,9 @@ class QuestionController extends Controller {
   answer(event) {
     this.userAnswers[this.currentQuestion] = {
       answer: parseInt(event.target.value),
-      index: this.questions[this.currentQuestion].index
+      index: this.questions[this.currentQuestion].index,
+      multiplier: this.questions[this.currentQuestion].multiplier,
+      type: this.questions[this.currentQuestion].type
     }
     this.canProceed()
   }

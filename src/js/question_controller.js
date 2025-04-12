@@ -342,7 +342,8 @@ class QuestionController extends Controller {
     this.resultTarget.classList.remove("hidden")
     this.resultTarget.classList.remove("invisible")
     document.querySelector("#chart").innerHTML = createChart(Object.values(this.parties))
-    let data = createParty(this.parties.nova, 0.69)
+    let [party, percent] = Object.entries(userAffinities)[0]
+    let data = createParty(this.parties[party], percent)
     this.resultTarget.querySelector("#party-box").outerHTML = data
   }
 

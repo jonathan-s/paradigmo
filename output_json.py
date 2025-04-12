@@ -99,6 +99,48 @@ def convert_numeric_columns():
         print(f"Error occurred: {str(e)}")
 
 
+def convert_party_info():
+    # Path to the CSV file
+    csv_path = "party_info.csv"
+
+    # Path to output JSON file
+    output_dir = "src"
+    output_path = os.path.join(output_dir, "party_info.json")
+
+    # Ensure the output directory exists
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
+    # Dictionary to store party data
+    party_data = {}
+
+    try:
+        with open(csv_path, "r", encoding="utf-8") as csvfile:
+            reader = csv.DictReader(csvfile)
+
+            # Process each row
+            for row in reader:
+                party_key = row["party_key"]
+                party_data[party_key] = {
+                    "fullname": row["fullname"],
+                    "leaning": row["leaning"],
+                    "blurb": row["party_blurb"],
+                }
+
+        # Write to JSON file
+        with open(output_path, "w", encoding="utf-8") as jsonfile:
+            json.dump(party_data, jsonfile, ensure_ascii=False, indent=2)
+
+        print(
+            f"Successfully converted party info to JSON. Output saved to {output_path}"
+        )
+        print(f"Total parties processed: {len(party_data)}")
+
+    except Exception as e:
+        print(f"Error occurred: {str(e)}")
+
+
 if __name__ == "__main__":
     convert_csv_to_json()
     convert_numeric_columns()
+    convert_party_info()

@@ -22,10 +22,16 @@ const createCircle = (percent) => {
   return svg
 }
 
+const questionContent = `
+
+
+`
+
 
 class QuestionController extends Controller {
   static targets = [
     "answer",
+    "content",
     "circleFragment",
     "next",
     "number",
@@ -48,8 +54,8 @@ class QuestionController extends Controller {
 
   init(event) {
     // Test the last questions.
-    // this.userAnswers = answerObj()
-    // this.currentQuestion = 22
+    this.userAnswers = answerObj()
+    this.currentQuestion = 23
     let questions = event.detail
 
     this.shortQuestions = questions.filter((q) => { return q.short })
@@ -57,6 +63,7 @@ class QuestionController extends Controller {
 
     this.questions = this.shortQuestions
     this.totalQ = this.questions.length
+    this.halfway = false
 
     console.log(this.shortQuestions, this.longQuestions)
     this.setQuestion(this.currentQuestion)
@@ -85,9 +92,10 @@ class QuestionController extends Controller {
   }
 
   next() {
-    if (!this.canProceed()) {
+    if (!this.canProceed() || this.showHalfway(this.currentQuestion + 1)) {
       return
     }
+
     this.setQuestion(this.currentQuestion + 1)
     this.setExistingAnswer()
     this.canProceed()
@@ -99,6 +107,33 @@ class QuestionController extends Controller {
     this.setExistingAnswer()
     this.canProceed()
     console.log(this.userAnswers)
+  }
+
+  showHalfway(num) {
+    if (num == this.shortQuestions.length) {
+      this.nextTarget.classList.add("hidden")
+      this.previousTarget.classList.add("hidden")
+      // should hide prev and next.
+      this.contentTarget.innerHTML = `
+        <div class="text-m center flex-column auto">
+          <p>Respondeu a 24 das 60 perguntas.</p>
+          <p>Pare aqui ou prossiga com o teste completo.</p>
+
+          <div class="review">
+            <span class="text-ss text-secondary">Mudou de ideias?</span>
+            <span class="text-ss underline" data-action="click->question#review">
+              Respostas da revisão
+            </span>
+          </div>
+        </div>
+      `
+      return true
+    }
+
+  }
+
+  review() {
+    console.log("review")
   }
 
   canProceed() {

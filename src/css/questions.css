@@ -139,6 +139,10 @@
     min-width: 280px;
     padding: 12px 24px;
   }
+
+  .review {
+    margin-top: 80px;
+  }
 }
 
 

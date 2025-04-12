@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,9 +12,9 @@
     </style>
     <link rel="stylesheet" href="./css/main.css" type="text/css" media="all">
 </head>
+
 <body class="">
     <main class="center flex-column">
-
         <div class="container fold-box title-box">
             <div class="flex logo">
                 <img src="./images/mark.svg" alt="" class="mark">
@@ -57,31 +58,22 @@
                     <circle cx="100" cy="100" r="80" fill="none" stroke="#f5e9c3" stroke-width="20" />
 
                     <!-- Progress Circle (blue gradient) with stroke-dasharray and stroke-dashoffset to show 69% -->
-                    <circle
-                      cx="100"
-                      cy="100"
-                      r="80"
-                      fill="none"
-                      stroke="url(#blueGradient)"
-                      stroke-width="20"
-                      stroke-linecap=""
-                      stroke-dasharray="502.4"
-                      stroke-dashoffset="155.744"
-                      transform="rotate(-90, 100, 100)"
-                      id="circle-fill"
-                    />
+                    <circle cx="100" cy="100" r="80" fill="none" stroke="url(#blueGradient)" stroke-width="20"
+                        stroke-linecap="" stroke-dasharray="502.4" stroke-dashoffset="155.744"
+                        transform="rotate(-90, 100, 100)" id="circle-fill" />
 
                     <!-- Text in the center -->
-                    <text x="100" y="100" id="circle-percent" dominant-baseline="middle" text-anchor="middle" font-family="Arial, sans-serif" font-size="36" font-weight="bold">69%</text>
+                    <text x="100" y="100" id="circle-percent" dominant-baseline="middle" text-anchor="middle"
+                        font-family="Arial, sans-serif" font-size="36" font-weight="bold">69%</text>
 
                     <!-- Blue gradient definition -->
                     <defs>
-                      <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stop-color="#308CCE" />
-                        <stop offset="100%" stop-color="#91D0FE" />
-                      </linearGradient>
+                        <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#308CCE" />
+                            <stop offset="100%" stop-color="#91D0FE" />
+                        </linearGradient>
                     </defs>
-                  </svg>
+                </svg>
             </template>
 
             <div class="center">
@@ -96,20 +88,21 @@
 
             </div>
 
-            <div class="content-box">
+            <div class="content-box" data-question-target="content" data-action="question:ready@window->question#init">
                 <div class="question-text">
                     <div class="category text-ss">
                         <span data-question-target="type" class="title"></span> -
                         <span data-question-target="theme" class="title"></span>
                     </div>
-                    <span class="text-m" data-question-target="question" data-action="question:ready@window->question#init">
+                    <span class="text-m" data-question-target="question">
                         loading...
                     </span>
                 </div>
 
                 <div class="options">
                     <label class="btn select-btn agree-totally">
-                        <input data-action="question#answer" data-question-target="answer" type="radio" name="question" value="2">
+                        <input data-action="question#answer" data-question-target="answer" type="radio" name="question"
+                            value="2">
                         <span class="text-ss">CONCORDO TOTALMENTE</span>
                         <div class="option-icon">
                             <img src="./images/okhand.svg">
@@ -117,26 +110,30 @@
                         </div>
                     </label>
                     <label class="btn select-btn agree-partially">
-                        <input data-action="question#answer" data-question-target="answer" type="radio" name="question" value="1">
+                        <input data-action="question#answer" data-question-target="answer" type="radio" name="question"
+                            value="1">
                         <span class="text-ss">CONCORDO PARCIALMENTE</span>
                         <div class="option-icon">
                             <img src="./images/okhand.svg">
                         </div>
                     </label>
                     <label class="btn select-btn neutral">
-                        <input data-action="question#answer" data-question-target="answer" type="radio" name="question" value="0">
+                        <input data-action="question#answer" data-question-target="answer" type="radio" name="question"
+                            value="0">
                         <span class="text-ss">POSIÇÃO NEUTRA</span>
                         <div class="option-icon"></div>
                     </label>
                     <label class="btn select-btn disagree-partially">
-                        <input data-action="question#answer" data-question-target="answer" type="radio" name="question" value="-1">
+                        <input data-action="question#answer" data-question-target="answer" type="radio" name="question"
+                            value="-1">
                         <span class="text-ss">DISCORDO PARCIALMENTE</span>
                         <div class="option-icon">
                             <img src="./images/not_ok_hand.svg">
                         </div>
                     </label>
                     <label class="btn select-btn disagree-totally">
-                        <input data-action="question#answer" data-question-target="answer" type="radio" name="question" value="-2">
+                        <input data-action="question#answer" data-question-target="answer" type="radio" name="question"
+                            value="-2">
                         <span class="text-ss">DISCORDO TOTALMENTE</span>
                         <div class="option-icon">
                             <img src="./images/not_ok_hand.svg">
@@ -144,7 +141,8 @@
                         </div>
                     </label>
                     <label class="btn select-btn no-answer">
-                        <input data-action="question#answer" data-question-target="answer" type="radio" name="question" value="NaN">
+                        <input data-action="question#answer" data-question-target="answer" type="radio" name="question"
+                            value="NaN">
                         <span class="text-ss">NÃO VOU RESPONDER</span>
                         <div class="option-icon"></div>
                     </label>
@@ -160,80 +158,112 @@
                     PRÓXIMA
                     <img src="./images/right_arrow.svg" class="arrow">
                 </button>
-            </div>
 
-            <div class="content-box poll-box">
-                <div class="party-row">
-                    <img src="/api/placeholder/24/24" alt="PS"\>
-                    <div class="party-bar-container" style="flex-grow: 69">
-                        <div class="party-name">PARTIDO SOCIALISTA</div>
-                    </div>
-                    <div style="flex-grow: 31"></div>
-                    <div class="party-percentage">69%</div>
-                </div>
+                <div class="flex flex-column center auto hidden">
+                    <button class="btn nav-button">
+                        Faça o teste completo
+                        <img src="./images/star.svg" class="icon">
+                    </button>
 
-                <div class="party-row">
-                    <img src="/api/placeholder/24/24" alt="PS"\>
-                    <div class="party-bar-container" style="flex-grow: 69">
-                        <div class="party-name">PARTIDO SOCIALISTA</div>
-                    </div>
-                    <div style="flex-grow: 31"></div>
-                    <div class="party-percentage">69%</div>
+                    <span class="text-s mt-4">
+                        Veja o resultado
+                        <img src="./images/bars.svg" class="icon">
+                    </span>
                 </div>
             </div>
 
-            <div class="content-box chart">
+            <div id="user-results">
 
-                <!-- Axis labels -->
-                <div class="text-s top-label">Progressista</div>
-                <div class="text-s bottom-label">Conservador</div>
-                <div class="text-s left-label">Esquerda</div>
-                <div class="text-s right-label">Direita</div>
+                <div class="content-box">
+                    <div class="party-card">
+                        <div class="left-column">
+                            <div>
+                                <div class="logo-placeholder"></div>
+                                <h2 class="party-name">Partido Socialista</h2>
+                                <div class="party-category">Centro-Esquerda</div>
+                            </div>
+                            <p class="party-description">O Partido de centro-esquerda que defende políticas sociais com economia de mercado.</p>
+                        </div>
+                        <div class="right-column">
+                            <div class="percentage-circle-placeholder">69%</div>
+                        </div>
+                    </div>
+                </div>
 
-                <!-- Grid lines -->
-                <div class="main-horizontal dotted-spaced"></div>
-                <div class="main-vertical left dotted-spaced"></div>
+                <div class="content-box party-box">
+                    <div class="party-row">
+                        <img src="/api/placeholder/24/24" alt="PS" \>
+                        <div class="party-bar-container" style="flex-grow: 69">
+                            <div class="party-name">PARTIDO SOCIALISTA</div>
+                        </div>
+                        <div style="flex-grow: 31"></div>
+                        <div class="party-percentage">69%</div>
+                    </div>
 
-                <!-- Dotted grid lines -->
+                    <div class="party-row">
+                        <img src="/api/placeholder/24/24" alt="PS" \>
+                        <div class="party-bar-container" style="flex-grow: 69">
+                            <div class="party-name">PARTIDO SOCIALISTA</div>
+                        </div>
+                        <div style="flex-grow: 31"></div>
+                        <div class="party-percentage">69%</div>
+                    </div>
+                </div>
 
-                <!-- Parties positioned on the chart -->
-                <!-- Partido Socialista - blue circle -->
-                <div class="party ps" style="left: 40%; top: 45%">PS</div>
+                <div class="content-box chart">
+                    <!-- Axis labels -->
+                    <div class="text-s top-label">Progressista</div>
+                    <div class="text-s bottom-label">Conservador</div>
+                    <div class="text-s left-label">Esquerda</div>
+                    <div class="text-s right-label">Direita</div>
 
-                <!-- Bloco de Esquerda - red star/figure -->
-                <div class="party be" style="left: 35%; top: 35%">BE</div>
+                    <!-- Grid lines -->
+                    <div class="main-horizontal dotted-spaced"></div>
+                    <div class="main-vertical left dotted-spaced"></div>
 
-                <!-- PCP - hammer and sickle -->
-                <div class="party pcp" style="left: 15%; top: 75%">PCP</div>
+                    <!-- Dotted grid lines -->
 
-                <!-- Chega - in different positions -->
-                <div class="party chega" style="left: 70%; top: 20%">CH</div>
-                <div class="party chega" style="left: 35%; top: 80%">CH</div>
+                    <!-- Parties positioned on the chart -->
+                    <!-- Partido Socialista - blue circle -->
+                    <div class="party ps" style="left: 40%; top: 45%">PS</div>
 
-                <!-- AD - orange -->
-                <div class="party ad" style="left: 65%; top: 40%">AD</div>
-                <div class="party ad" style="left: 55%; top: 75%">AD</div>
-                <div class="party ad" style="left: 20%; top: 85%">AD</div>
+                    <!-- Bloco de Esquerda - red star/figure -->
+                    <div class="party be" style="left: 35%; top: 35%">BE</div>
 
-                <!-- Volt - purple -->
-                <div class="party volt" style="left: 65%; top: 60%">VT</div>
+                    <!-- PCP - hammer and sickle -->
+                    <div class="party pcp" style="left: 15%; top: 75%">PCP</div>
 
-                <!-- PAN - green -->
-                <div class="party pan" style="left: 60%; top: 65%">PAN</div>
+                    <!-- Chega - in different positions -->
+                    <div class="party chega" style="left: 70%; top: 20%">CH</div>
+                    <div class="party chega" style="left: 35%; top: 80%">CH</div>
 
-                <!-- IL - liberal initiative -->
-                <div class="party il" style="left: 55%; top: 65%">IL</div>
+                    <!-- AD - orange -->
+                    <div class="party ad" style="left: 65%; top: 40%">AD</div>
+                    <div class="party ad" style="left: 55%; top: 75%">AD</div>
+                    <div class="party ad" style="left: 20%; top: 85%">AD</div>
 
-                <!-- Extra circles for left side -->
-                <div class="party be" style="left: 18%; top: 65%">PS</div>
-                <div class="party be" style="left: 25%; top: 75%">PS</div>
+                    <!-- Volt - purple -->
+                    <div class="party volt" style="left: 65%; top: 60%">VT</div>
+
+                    <!-- PAN - green -->
+                    <div class="party pan" style="left: 60%; top: 65%">PAN</div>
+
+                    <!-- IL - liberal initiative -->
+                    <div class="party il" style="left: 55%; top: 65%">IL</div>
+
+                    <!-- Extra circles for left side -->
+                    <div class="party be" style="left: 18%; top: 65%">PS</div>
+                    <div class="party be" style="left: 25%; top: 75%">PS</div>
+                </div>
             </div>
+
+
         </div>
-
 
     </main>
 
     <script id="data-questions" type="application/json" src="./questions.json"></script>
     <script type="module" src="./js/question_controller.js"></script>
 </body>
+
 </html>

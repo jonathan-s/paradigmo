@@ -157,7 +157,7 @@ const createCircle = (percent) => {
 
   let svg = document.querySelector("#circle").innerHTML
   svg = svg.replace("${offset}", offset)
-  svg = svg.replace("${number}", number)
+  svg = svg.replace("${number}", number + "%")
   console.log(svg)
   return svg
 }

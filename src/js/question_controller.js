@@ -186,6 +186,28 @@ const createChart = (parties) => {
   return html
 }
 
+const createPartyTable = (affinities, parties) => {
+  let html = ""
+
+  for (let [party, affinity] of affinities) {
+    console.log(party, affinity)
+    let percent = Math.round(100 * affinity, 0)
+    let rest = 100 - percent
+    let row = `
+      <div class="party-row">
+        <img src="../images/logos/${parties[party].key}.png" alt="${parties[party].fullname}" \>
+        <div class="party-bar-container" style="flex-grow: ${percent}">
+            <div class="party-name">${parties[party].fullname}</div>
+        </div>
+        <div style="flex-grow: ${rest}"></div>
+        <div class="party-percentage">${percent}%</div>
+      </div>
+    `
+    html = html + row
+  }
+  return html
+}
+
 
 const createParty = (party, percent) => {
   let svg = createCircle(percent)
@@ -338,12 +360,14 @@ class QuestionController extends Controller {
     console.log("Result affinity")
     console.log(userAffinities)
 
-
     this.resultTarget.classList.remove("hidden")
     this.resultTarget.classList.remove("invisible")
     document.querySelector("#chart").innerHTML = createChart(Object.values(this.parties))
-    let [party, percent] = Object.entries(userAffinities)[0]
+
+    let affinities = Object.entries(userAffinities)
+    let [party, percent] = affinities[0]
     let data = createParty(this.parties[party], percent)
+    document.querySelector("#party-table").innerHTML = createPartyTable(affinities, this.parties)
     this.resultTarget.querySelector("#party-box").outerHTML = data
   }
 

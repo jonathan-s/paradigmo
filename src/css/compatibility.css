@@ -1,4 +1,4 @@
-.card-container {
+.party-box {
     width: 100%;
     max-width: 700px;
     position: relative;
@@ -6,12 +6,9 @@
 }
 
 .party-card {
-    background-color: #faf3e3;
-    border-radius: 25px;
     padding: 30px;
     display: flex;
     position: relative;
-    border: 2px solid #9932cc; /* Purple border */
 }
 
 .left-column {
@@ -29,29 +26,16 @@
 }
 
 .logo-placeholder {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
-    background-color: #e0e0e0;
-    margin-bottom: 20px;
 }
 
 .party-name {
-    font-size: 24px;
-    font-weight: bold;
-    margin: 10px 0;
     text-transform: uppercase;
 }
 
-.party-category {
-    font-size: 16px;
-    color: #c9933e; /* Gold/bronze color */
-    margin-bottom: 15px;
-}
-
 .party-description {
-    font-size: 16px;
-    line-height: 1.5;
     max-width: 400px;
 }
 

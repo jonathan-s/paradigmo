@@ -20,6 +20,7 @@ h2 {
     line-height: 124%;
     letter-spacing: 1.4%;
     font-weight: 700;
+    margin: 0;
 }
 
 h3 {
@@ -28,6 +29,7 @@ h3 {
     line-height: 126%;
     letter-spacing: 2%;
     font-weight: 700;
+    margin: 0;
 }
 
 p {

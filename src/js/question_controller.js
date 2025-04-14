@@ -350,10 +350,12 @@ class QuestionController extends Controller {
       this.nextTarget.classList.add("hidden")
       this.previousTarget.classList.add("hidden")
       this.completeTarget.classList.remove("hidden")
-      // should hide prev and next.
+      // TODO should hide prev and next.
+
+      let answerCount = Object.values(this.userAnswers).filter((q) => !isNaN(q.answer)).length
       this.contentTarget.innerHTML = `
         <div class="text-m center flex-column auto">
-          <p>Respondeu a 24 das 60 perguntas.</p>
+          <p>Respondeu a ${answerCount} das 60 perguntas.</p>
           <p>Pare aqui ou prossiga com o teste completo.</p>
 
           <div class="review">

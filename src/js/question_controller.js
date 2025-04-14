@@ -249,7 +249,6 @@ class ScrollController extends Controller {
 
   scrollTo(selector, offset) {
     var element = document.querySelector(selector);
-    var headerOffset = 45;
     var elementPosition = element.getBoundingClientRect().top;
     var offsetPosition = elementPosition + window.pageYOffset - offset;
 

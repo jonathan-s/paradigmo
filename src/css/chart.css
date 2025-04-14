@@ -119,48 +119,44 @@
     background-repeat: no-repeat;
 }
 
-/* Party placeholder styles */
 .ad {
     background-image: url("../images/logos/ad.png");
 }
 
-/* Partido Socialista (blue circle) */
 .adn {
     background-image: url("../images/logos/adn.png");
 }
 
-/* Bloco de Esquerda (red figure) */
 .be {
     background-image: url("../images/logos/be.png");
 }
 
-/* PCP (hammer and sickle) */
 .cdu {
     background-image: url("../images/logos/cdu.png");
 }
 
-/* Chega (yellow logo) */
 .chega {
     background-image: url("../images/logos/chega.png");
 }
 
-/* AD (orange logo) */
 .il {
     background-image: url("../images/logos/il.png");
 }
 
-/* Volt (purple logo) */
 .jpp {
     background-image: url("../images/logos/jpp.png");
 }
 
-/* PAN (green logo) */
 .livre {
     background-image: url("../images/logos/livre.png");
 }
 
 .nova {
     background-image: url("../images/logos/nova.png");
+}
+
+.rir {
+    background-image: url("../images/logos/rir.png");
 }
 
 .pan {
@@ -182,5 +178,3 @@
 .volt {
     background-image: url("../images/logos/volt.png");
 }
-
-/* IL (light blue logo) */

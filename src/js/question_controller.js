@@ -350,18 +350,17 @@ class QuestionController extends Controller {
   }
 
   complete() {
-    // Shows the screen directly.
+    // Shows the halfway screen
     this.showHalfway(24)
   }
 
   showHalfway(num) {
-    if (num == this.shortQuestions.length) {
+    if (num == this.questions.length) {
       this.questionCountTarget.classList.add("hidden")
       this.nextTarget.classList.add("hidden")
       this.previousTarget.classList.add("hidden")
       this.completeTarget.classList.remove("hidden")
       this.correctBtnTarget.classList.add("hidden")
-      // TODO should hide prev and next.
 
       let answerCount = Object.values(this.userAnswers).filter((q) => !isNaN(q.answer)).length
       this.questionnaireHTML = this.contentTarget.innerHTML
@@ -380,6 +379,14 @@ class QuestionController extends Controller {
       `
       return true
     }
+  }
+
+  takeAllQuestions() {
+    this.questions = this.shortQuestions.concat(this.longQuestions)
+    this.totalQ = this.questions.length
+    this._resetQuestionnaire()
+    this.setQuestion(24)
+    this.setExistingAnswer()
   }
 
   showResults() {
@@ -408,13 +415,17 @@ class QuestionController extends Controller {
     this.resultTarget.querySelector("#party-box").outerHTML = data
   }
 
-  review() {
+  _resetQuestionnaire() {
     this.contentTarget.innerHTML = this.questionnaireHTML
     this.nextTarget.classList.remove("hidden")
     this.previousTarget.classList.remove("hidden")
     this.completeTarget.classList.add("hidden")
     this.correctBtnTarget.classList.remove("hidden")
     this.questionCountTarget.classList.remove("hidden")
+  }
+
+  review() {
+    this._resetQuestionnaire()
     this.setQuestion(0)
     this.setExistingAnswer()
   }

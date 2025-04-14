@@ -315,7 +315,7 @@ class QuestionController extends Controller {
   }
 
   setExistingAnswer() {
-    let answer = this.userAnswers[this.currentQuestion]
+    let answer = this.userAnswers[this.currentQuestion]?.answer
     this.answerTargets.map((target) => {
       if (answer == undefined) {
         target.checked = false

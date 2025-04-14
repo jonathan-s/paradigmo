@@ -273,6 +273,7 @@ class QuestionController extends Controller {
     "number",
     "previous",
     "question",
+    "questionCount",
     "result",
     "theme",
     "total_q",
@@ -355,6 +356,7 @@ class QuestionController extends Controller {
 
   showHalfway(num) {
     if (num == this.shortQuestions.length) {
+      this.questionCountTarget.classList.add("hidden")
       this.nextTarget.classList.add("hidden")
       this.previousTarget.classList.add("hidden")
       this.completeTarget.classList.remove("hidden")
@@ -412,6 +414,7 @@ class QuestionController extends Controller {
     this.previousTarget.classList.remove("hidden")
     this.completeTarget.classList.add("hidden")
     this.correctBtnTarget.classList.remove("hidden")
+    this.questionCountTarget.classList.remove("hidden")
     this.setQuestion(0)
     this.setExistingAnswer()
   }

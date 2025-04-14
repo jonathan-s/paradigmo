@@ -75,7 +75,7 @@
 
 
         <div class="container question-box" data-controller="question">
-            <div class="center">
+            <div class="center" data-question-target="questionCount">
                 <div class="question-header">
                     <h2>Questão</h2>
                     <div class="question-number center">
@@ -84,7 +84,6 @@
                         <span data-question-target="total_q">24</span>
                     </div>
                 </div>
-
             </div>
 
             <div class="content-box" data-question-target="content" data-action="question:ready@window->question#init">

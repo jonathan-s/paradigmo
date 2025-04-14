@@ -267,6 +267,7 @@ class QuestionController extends Controller {
     "answer",
     "content",
     "complete",
+    "correctBtn",
     "circleFragment",
     "next",
     "number",
@@ -347,14 +348,21 @@ class QuestionController extends Controller {
     console.log(this.userAnswers)
   }
 
+  complete() {
+    // Shows the screen directly.
+    this.showHalfway(24)
+  }
+
   showHalfway(num) {
     if (num == this.shortQuestions.length) {
       this.nextTarget.classList.add("hidden")
       this.previousTarget.classList.add("hidden")
       this.completeTarget.classList.remove("hidden")
+      this.correctBtnTarget.classList.add("hidden")
       // TODO should hide prev and next.
 
       let answerCount = Object.values(this.userAnswers).filter((q) => !isNaN(q.answer)).length
+      this.questionnaireHTML = this.contentTarget.innerHTML
       this.contentTarget.innerHTML = `
         <div class="text-m center flex-column auto">
           <p>Respondeu a ${answerCount} das 60 perguntas.</p>
@@ -362,7 +370,7 @@ class QuestionController extends Controller {
 
           <div class="review">
             <span class="text-ss text-secondary">Mudou de ideias?</span>
-            <span class="text-ss underline" data-action="click->question#review">
+            <span class="text-ss underline pointer" data-action="click->question#review">
               Respostas da revisão
             </span>
           </div>
@@ -370,7 +378,6 @@ class QuestionController extends Controller {
       `
       return true
     }
-
   }
 
   showResults() {
@@ -400,7 +407,13 @@ class QuestionController extends Controller {
   }
 
   review() {
-    console.log("review")
+    this.contentTarget.innerHTML = this.questionnaireHTML
+    this.nextTarget.classList.remove("hidden")
+    this.previousTarget.classList.remove("hidden")
+    this.completeTarget.classList.add("hidden")
+    this.correctBtnTarget.classList.remove("hidden")
+    this.setQuestion(0)
+    this.setExistingAnswer()
   }
 
   canProceed() {

@@ -162,13 +162,15 @@ const createCircle = (percent) => {
   return svg
 }
 
-const createChart = (parties) => {
+const createChart = (parties, you) => {
   let dots = ``
 
   for (let p of parties) {
     console.log(p)
-    dots = dots + `<div alt="${p.fullname}" class="party ${p.key}" style="left: ${p.left}; top: ${p.top}"></div>`
+    dots = dots + `<div title="${p.fullname}" class="party ${p.key}" style="left: ${p.left}; top: ${p.top}"></div>`
   }
+  dots = dots + `<div title="YOU" class="party you" style="left: ${you.left}; top: ${you.top};"></div>`
+
   let html = `
     <div class="text-s top-label">Progressista</div>
     <div class="text-s bottom-label">Conservador</div>
@@ -387,7 +389,8 @@ class QuestionController extends Controller {
 
     this.resultTarget.classList.remove("hidden")
     this.resultTarget.classList.remove("invisible")
-    document.querySelector("#chart").innerHTML = createChart(Object.values(this.parties))
+    let you = {left: score.left, top: score.top}
+    document.querySelector("#chart").innerHTML = createChart(Object.values(this.parties), you)
 
     let affinities = Object.entries(userAffinities)
     let [party, percent] = affinities[0]

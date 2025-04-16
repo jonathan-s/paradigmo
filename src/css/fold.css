@@ -56,6 +56,13 @@
         rotate: 30deg;
     }
 
+    .blue-curve {
+        rotate: 17deg;
+        position: absolute;
+        top: 81px;
+        left: -1200px;
+    }
+
     .blue-curve-div{
         --width: 3600px;
         position: absolute;

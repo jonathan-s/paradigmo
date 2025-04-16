@@ -93,3 +93,10 @@ div {
 button:disabled {
     opacity: 0.25;
 }
+
+
+@media (width <= 430px) {
+    .center {
+        text-align: center;
+    }
+}

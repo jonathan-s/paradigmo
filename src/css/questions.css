@@ -102,9 +102,7 @@
   background-color:var(--bg-card);
   border-top-left-radius: var(--border-radius);
   border-bottom-right-radius: var(--border-radius);
-  padding: 30px;
-  padding-left: 40px;
-  padding-top: 40px;
+  padding: 40px 40px 30px 40px;
   display: flex;
   justify-content: space-between;
   gap: 50px;
@@ -151,5 +149,45 @@
   }
 }
 
+@media (width <= 430px) {
+  .content-box {
+    padding: 20px;
+    flex-direction: column;
+    gap: 16px;
+    .question-text {
+      margin-bottom: 0;
+    }
+
+    .select-btn {
+      min-width: 250px;
+    }
+  }
+
+  .navigation {
+    margin-top: 16px;
+    padding: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .navigation button {
+    margin: 8px;
+  }
+
+  .question-header {
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  .mb-5 {
+    margin-bottom: 16px !important;
+  }
+
+  .tudo {
+    justify-content: center;
+    flex-grow: 1;
+    margin: 0 22px !important;
+  }
 
 
+}

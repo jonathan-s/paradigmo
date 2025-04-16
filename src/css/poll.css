@@ -62,3 +62,28 @@
     min-width: 30px;
     text-align: right;
 }
+
+@media (width <= 430px) {
+
+  .right-column {
+    svg {
+      scale: 1 !important;
+      margin-right: 0 !important;
+      margin-top: 16px;
+    }
+  }
+
+  .party-card {
+    flex-direction: column;
+    padding: 8px !important;
+  }
+
+  .left-column {
+    align-items: center;
+    text-align: center;
+  }
+
+  .party-table-title {
+    margin-top: 32px !important;
+  }
+}

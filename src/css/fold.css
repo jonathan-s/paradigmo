@@ -61,6 +61,7 @@
         position: absolute;
         top: 81px;
         left: -1200px;
+        z-index: -1;
     }
 
     .blue-curve-div{
@@ -88,4 +89,50 @@
     margin: 12px 0;
     background-image: url("../images/github.svg");
     background-size: 40px;
+}
+
+
+@media (width <= 430px) {
+    .logo {
+        .mark {
+            height: 32px;
+            margin-bottom: 2px;
+        }
+    }
+
+    .fold-box {
+        flex-direction: column;
+    }
+    .title-box {
+        margin-top: 0px;
+        flex-direction: row;
+        margin-bottom: 10px;
+    }
+
+    .shape {
+        max-width: 390px;
+    }
+    .github-logo {
+        transform: scale(0.9);
+        margin: 0;
+    }
+
+
+    .blue-curve {
+        top: 17px !important;
+    }
+
+    .curves {
+        position: relative;
+        top: -240px;
+        left: 190px;
+        z-index: -99;
+    }
+
+    .fold-box {
+        margin-top: 0px;
+    }
+    .down-button {
+        margin-top: -40px;
+    }
 }

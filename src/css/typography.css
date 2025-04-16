@@ -79,3 +79,14 @@ p {
 .underline {
     text-decoration: underline;
 }
+
+
+@media (width < 430px) {
+    h1 {
+        font-size: 36px !important;
+    }
+    h2 { font-size: 32px; }
+    .text-l { font-size: 20px; }
+    .text-m { font-size: 18px; }
+    .text-s { font-size: 16px; }
+}

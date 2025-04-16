@@ -10,3 +10,9 @@
 
     --text-s-size: 18px;
 }
+
+@media (width <= 430px) {
+    :root {
+        --border-radius: 32px;
+    }
+}

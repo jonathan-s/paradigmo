@@ -247,11 +247,11 @@ const questionContent = `
 
 class ScrollController extends Controller {
   toQuestion() {
-    this.scrollTo(".question-box", 100)
+    this.scrollTo(".question-box", 40)
   }
 
   toResults() {
-    this.scrollTo("#party-box", 250)
+    this.scrollTo("#party-box", 160)
   }
 
   scrollTo(selector, offset) {
@@ -376,9 +376,9 @@ class QuestionController extends Controller {
 
           <div class="review">
             <span class="text-ss text-secondary">Mudou de ideias?</span>
-            <span class="text-ss underline pointer" data-action="click->question#review">
+            <p class="text-ss underline pointer" data-action="click->question#review">
               Respostas da revisão
-            </span>
+            </p>
           </div>
         </div>
       `

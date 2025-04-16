@@ -39,6 +39,10 @@
     text-transform: uppercase;
 }
 
+  .party-table-title {
+    margin-top: 192px;
+  }
+
 .party-description {
     max-width: 400px;
 }

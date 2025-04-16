@@ -12,6 +12,10 @@
     background-repeat: repeat-y;
 }
 
+.chart-title {
+    margin-top: 192px;
+}
+
 .chart {
     max-width: var(--max-width);
     margin-top: 30px;
@@ -181,4 +185,45 @@
 
 .you {
     background-image: url("../images/logos/you.png");
+}
+
+
+@media (width <= 430px) {
+    .chart-title {
+        margin-top: 32px;
+    }
+
+    .mb-2 {
+        margin-bottom: 0px;
+    }
+
+    .chart {
+        max-height: 700px;
+        background-color: unset !important;
+        margin: 0;
+        height: 100%
+    }
+
+    .top-label {
+        top: 5px;
+    }
+
+    .left-label {
+        left: -45px;
+    }
+
+    .right-label {
+        right: -25px;
+    }
+
+    .party {
+        width: 37px;
+        height: 37px;
+        transform: translate(-4px, 4px);
+    }
+
+    .compass-container {
+        height: 700px;
+        margin: 0;
+    }
 }

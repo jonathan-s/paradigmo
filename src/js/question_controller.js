@@ -92,14 +92,19 @@ function calculatePartyAffinity(userAnswers, partyAnswers, questionIds = null, m
  * (1, -1) is bottom-right
  */
 function tupleToCssPosition(x, y) {
+  // To center your own logo.
+  let offset = 2.5;
   // Map x from (-1, 1) to (0%, 100%)
-  const leftPercent = ((x + 1) / 2) * 100;
+  let leftPercent = ((x + 1) / 2) * 100;
+  leftPercent = leftPercent - offset;
 
   // Map y from (1, -1) to (0%, 100%)
   // Note: We invert y because in CSS, top: 0% is the top of the container
   // and top: 100% is the bottom, while in our coordinate system,
   // y=1 is top and y=-1 is bottom
-  const topPercent = ((1 - y) / 2) * 100;
+  let topPercent = ((1 - y) / 2) * 100;
+  topPercent = topPercent - offset;
+
 
   return {
     left: `${leftPercent}%`,

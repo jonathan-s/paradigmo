@@ -202,9 +202,9 @@ const createPartyTable = (affinities, parties) => {
     let rest = 100 - percent
     let row = `
       <div class="party-row">
-        <img src="../images/logos/${parties[party].key}.png" alt="${parties[party].fullname}" \>
+        <img src="../images/logos/${parties[party].key}.png" alt="${parties[party].abbreviation}" \>
         <div class="party-bar-container" style="flex-grow: ${percent}">
-            <div class="party-name">${parties[party].fullname}</div>
+            <div class="party-name">${parties[party].abbreviation}</div>
         </div>
         <div style="flex-grow: ${rest}"></div>
         <div class="party-percentage">${percent}%</div>
@@ -226,6 +226,7 @@ const createParty = (party, percent) => {
                     <div class="logo-placeholder mb-5">
                       <img class="logo" src="./images/logos/${party.key}.png">
                     </div>
+                    <h3>${party.abbreviation}</h3>
                     <h3>${party.fullname}</h3>
                     <div class="text-secondary text-ss italic">${party.leaning}</div>
                 </div>
@@ -377,7 +378,7 @@ class QuestionController extends Controller {
           <div class="review">
             <span class="text-ss text-secondary">Mudou de ideias?</span>
             <p class="text-ss underline pointer" data-action="click->question#review">
-              Respostas da revisão
+              Rever as respostas
             </p>
           </div>
         </div>

@@ -195,6 +195,8 @@ def convert_party_info():
                     "abbreviation": row["abbreviation"],
                     "fullname": row["fullname"],
                     "leaning": row["leaning"],
+                    "programme": row["programme"],
+                    "website": row["website"],
                     "blurb": row["party_blurb"],
                     **score,
                 }

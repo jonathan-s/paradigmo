@@ -224,7 +224,7 @@ const createParty = (party, percent) => {
             <div class="left-column">
                 <div>
                     <div class="logo-placeholder mb-5">
-                      <img class="logo" src="./images/logos/${party.key}.png">
+                      <a href=${party.website}><img class="logo" src="./images/logos/${party.key}.png"></a>
                     </div>
                     <h3>${party.abbreviation}</h3>
                     <h3>${party.fullname}</h3>

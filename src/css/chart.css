@@ -29,6 +29,8 @@
     position: relative;
 }
 
+
+
 .axis-label {
     position: absolute;
     font-weight: bold;
@@ -121,6 +123,26 @@
     text-align: center;
     background-size: contain;
     background-repeat: no-repeat;
+}
+
+.party::after {
+  background-color: var(--politicalColor);
+  height: 7px;
+  content: "";
+  position: absolute;
+  top: -11px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.economic-indicator {
+  width: 30%;
+  height: 20px;
+  /* See colors in javascript. Need change there as well if you change here. */
+  background: linear-gradient(90deg,rgb(217, 35, 114) 0%, rgb(51, 217, 39) 100%);
+  border-radius: 10px;
+  position: absolute;
+  right: 20px;
 }
 
 .ad {

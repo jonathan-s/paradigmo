@@ -28,6 +28,55 @@ function mockAnswers(count = 60) {
   return mockAnswers;
 }
 
+
+/**
+ * Returns a hex color along the gradient between two colors
+ * @param {string} color1 - Starting hex color (format: '#RRGGBB' or '#RGB')
+ * @param {string} color2 - Ending hex color (format: '#RRGGBB' or '#RGB')
+ * @param {number} percent - Value between 0 and 1
+ * @returns {string} Resulting hex color
+ */
+function getGradientColor(color1, color2, percent) {
+  // Convert hex colors to RGB
+  const parseHex = (hex) => {
+    // Remove # if present
+    hex = hex.replace('#', '');
+
+    // Handle shorthand hex (#RGB)
+    if (hex.length === 3) {
+      hex = hex.split('').map(char => char + char).join('');
+    }
+
+    // Parse RGB values
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+
+    return [r, g, b];
+  };
+
+  const [r1, g1, b1] = parseHex(color1);
+  const [r2, g2, b2] = parseHex(color2);
+
+  // Calculate new color values
+  const r = Math.round(r1 + (r2 - r1) * percent);
+  const g = Math.round(g1 + (g2 - g1) * percent);
+  const b = Math.round(b1 + (b2 - b1) * percent);
+
+  // Convert back to hex
+  const toHex = (value) => {
+    const hex = value.toString(16);
+    return hex.length === 1 ? '0' + hex : hex;
+  };
+  return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+}
+
+const getPoliticalColor = (percentage) => {
+  const startingColor = '#D92372'
+  const endingColor = '#33D927'
+  return getGradientColor(startingColor, endingColor, percentage)
+}
+
 /**
  * Calculate political party affinity scores based on question answers.
  *
@@ -152,7 +201,10 @@ function calculateCompassScores(questions) {
     scores[axisName] = Math.max(-1.0, Math.min(1.0, normalizedScore));
   }
 
-  return { ...scores, ...tupleToCssPosition(scores.economic, scores.social) };
+  // Make the score between 0 and 1, so that it is equivalent to a percentage value.
+  let normalizedPoliticalScore = ((scores.political + 1) / 2);
+  let political = {politicalColor: getPoliticalColor(normalizedPoliticalScore)}
+  return { ...scores, ...tupleToCssPosition(scores.economic, scores.social), ...political };
 }
 
 const createCircle = (percent) => {
@@ -175,6 +227,7 @@ const createChart = (parties, you) => {
   dots = dots + `<div title="YOU" class="party you" style="left: ${you.left}; top: ${you.top};"></div>`
 
   let html = `
+    <div class="economic-indicator"></div>
     <div class="text-s top-label">Progressista</div>
     <div class="text-s bottom-label">Conservador</div>
     <div class="text-s left-label">Esquerda</div>
@@ -389,6 +442,16 @@ class QuestionController extends Controller {
     this.setExistingAnswer()
   }
 
+  _changePoliticalColor(parties, you) {
+    for (let p of parties) {
+      let style = document.querySelector(`.party.${p.key}`).style
+      let color = p.politicalColor || getPoliticalColor(((p.political + 1) / 2))
+      style.setProperty('--politicalColor', color)
+    }
+    let style = document.querySelector(`.party.you`).style
+    style.setProperty('--politicalColor', you.politicalColor)
+  }
+
   showResults() {
     let score = calculateCompassScores(Object.values(this.userAnswers))
     console.log(score)
@@ -404,8 +467,9 @@ class QuestionController extends Controller {
 
     this.resultTarget.classList.remove("hidden")
     this.resultTarget.classList.remove("invisible")
-    let you = {left: score.left, top: score.top}
+    let you = {left: score.left, top: score.top, politicalColor: score.politicalColor}
     document.querySelector("#chart").innerHTML = createChart(Object.values(this.parties), you)
+    this._changePoliticalColor(Object.values(this.parties), you)
 
     let affinities = Object.entries(userAffinities)
     let [party, percent] = affinities[0]

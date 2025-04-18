@@ -163,7 +163,6 @@ const createCircle = (percent) => {
   let svg = document.querySelector("#circle").innerHTML
   svg = svg.replace("${offset}", offset)
   svg = svg.replace("${number}", number + "%")
-  console.log(svg)
   return svg
 }
 
@@ -171,7 +170,6 @@ const createChart = (parties, you) => {
   let dots = ``
 
   for (let p of parties) {
-    console.log(p)
     dots = dots + `<div title="${p.fullname}" class="party ${p.key}" style="left: ${p.left}; top: ${p.top}"></div>`
   }
   dots = dots + `<div title="YOU" class="party you" style="left: ${you.left}; top: ${you.top};"></div>`
@@ -197,7 +195,6 @@ const createPartyTable = (affinities, parties) => {
   let html = ""
 
   for (let [party, affinity] of affinities) {
-    console.log(party, affinity)
     let percent = Math.round(100 * affinity, 0)
     let rest = 100 - percent
     let row = `
@@ -311,7 +308,6 @@ class QuestionController extends Controller {
     this.totalQ = this.questions.length
     this.halfway = false
 
-    console.log(this.shortQuestions, this.longQuestions)
     this.setQuestion(this.currentQuestion)
   }
 
@@ -345,14 +341,12 @@ class QuestionController extends Controller {
     this.setQuestion(this.currentQuestion + 1)
     this.setExistingAnswer()
     this.canProceed()
-    console.log(this.userAnswers)
   }
 
   previous() {
     this.setQuestion(this.currentQuestion - 1)
     this.setExistingAnswer()
     this.canProceed()
-    console.log(this.userAnswers)
   }
 
   complete() {
@@ -403,7 +397,6 @@ class QuestionController extends Controller {
     for (let q of Object.values(this.userAnswers)) {
       answers[q.index] = q.answer
     }
-    console.log(answers)
     let userAffinities = calculatePartyAffinity(answers, this.partyAnswers)
 
     console.log("Result affinity")
@@ -493,5 +486,3 @@ class QuestionController extends Controller {
 window.Stimulus = Application.start()
 Stimulus.register("question", QuestionController)
 Stimulus.register("scroll", ScrollController)
-
-console.log("hello world")

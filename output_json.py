@@ -64,7 +64,7 @@ def tuple_to_css_position(x, y):
     Dictionary with 'left' and 'top' as percentages
     """
     # Offset to center logo
-    offset = 3
+    offset = 11
     # Map x from (-1, 1) to (0%, 100%)
     left_percent = ((x + 1) / 2) * 100
     left_percent = left_percent - offset

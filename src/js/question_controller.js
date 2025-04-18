@@ -233,10 +233,10 @@ const createChart = (parties, you) => {
     <div class="text-s left-label">Esquerda</div>
     <div class="text-s right-label">Direita</div>
 
-    <div class="main-horizontal dotted-spaced"></div>
-    <div class="main-vertical left dotted-spaced"></div>
 
     <div class="relative compass-container">
+      <div class="main-horizontal dotted-spaced"></div>
+      <div class="main-vertical left dotted-spaced"></div>
       ${dots}
     </div>
   `

@@ -118,9 +118,9 @@
 
 /* Main axes */
 .main-horizontal {
-    left: 10%;
+    left: 7%;
     top: 50%;
-    width: 80%;
+    width: 95%;
     height: 2px;
     position: absolute;
 }
@@ -135,9 +135,8 @@
 
 .compass-container {
     position: relative;
-    width: 100%;
-    margin: 25px 65px;
-    height: var(--max-width);
+    margin: 47px 57px;
+    height: 91%;
     /* border: 1px solid black; */
 }
 
@@ -258,26 +257,48 @@
         height: 100%
     }
 
+    .chart-info {
+        background-color: var(--bg-color);
+        top: -317px;
+        margin: unset;
+        margin-left: unset;
+    }
+
+    .chart-info.down {
+        border: 2px solid var(--bg-card);
+    }
+
     .top-label {
-        top: 5px;
+        top: 32px;
     }
 
     .left-label {
-        left: -45px;
+        left: -30px;
+        top: 53%;
     }
 
     .right-label {
-        right: -25px;
+        right: -18px;
+        top: 52%;
+    }
+
+    .bottom-label {
+        bottom: -4px;
     }
 
     .party {
         width: 37px;
         height: 37px;
-        transform: translate(-4px, 4px);
+        transform: translate(-4px, 20px);
+    }
+
+    .main-horizontal {
+        width: 88%;
     }
 
     .compass-container {
         height: 700px;
         margin: 0;
+        margin: 0 12px;
     }
 }

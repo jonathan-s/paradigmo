@@ -32,36 +32,6 @@
     max-height: 24px;
 }
 
-.party-bar-container {
-    display: flex;
-    align-items: center;
-    height: 30px;
-    border-top-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    background-color: #F2E3C4;
-}
-
-.party-row:first-child .party-bar-container {
-    background: linear-gradient(to left, #4a90e2, #5ca0e6, #6eb1eb, #7ec2ef);
-}
-
-.party-name {
-    position: absolute;
-    color: black;
-    padding-left: 15px;
-    font-weight: bold;
-    font-size: 14px;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-}
-
-.party-percentage {
-    margin-left: 10px;
-    font-weight: bold;
-    font-size: 14px;
-    min-width: 30px;
-    text-align: right;
-}
-
 @media (width <= 430px) {
 
   .right-column {

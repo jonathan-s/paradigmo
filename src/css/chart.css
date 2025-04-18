@@ -16,10 +16,36 @@
     margin-top: 192px;
 }
 
+.chart-info {
+    transition: all 200ms ease-in-out;
+    background-color: var(--bg-card);
+    border-radius: var(--border-radius);
+    padding: 32px;
+    padding-bottom: 8px;
+    margin-right: 16px;
+    margin-left: -12px;
+    position: absolute;
+    z-index: 1;
+    top: -155px;
+    margin: auto;
+    margin-left: 10px;
+
+    .arrow-down {
+        rotate: 180deg;
+    }
+}
+
+.chart-info.down {
+    top: 30px;
+    border: 2px solid var(--bg-color);
+}
+
+
 .chart {
+    overflow: hidden;
     max-width: var(--max-width);
     margin-top: 30px;
-    background-color: #faf3e3;
+    background-color: var(--bg-card);
     border-top-left-radius: var(--border-radius);
     border-bottom-right-radius: var(--border-radius);
     padding: 20px;
@@ -27,6 +53,10 @@
     /* change this for mobile so that it becomes a bit thinner. */
     height: var(--max-width);
     position: relative;
+}
+
+#chart {
+    width: 100%;
 }
 
 
@@ -40,7 +70,7 @@
 
 .top-label {
     position: absolute;
-    top: 20px;
+    top: 33px;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -107,6 +137,7 @@
     position: relative;
     width: 100%;
     margin: 25px 65px;
+    height: var(--max-width);
     /* border: 1px solid black; */
 }
 
@@ -143,6 +174,7 @@
   border-radius: 10px;
   position: absolute;
   right: 20px;
+  top: 35px;
 }
 
 .ad {

@@ -204,7 +204,7 @@
                     </div>
                 </div>
 
-                <div id="party-table" class="content-box party-box">
+                <div id="party-table" class="content-box party-box party-table">
                     <div class="party-row">
                         <img src="/api/placeholder/24/24" alt="PS" \>
                         <div class="party-bar-container" style="flex-grow: 69">
@@ -230,50 +230,71 @@
                     </div>
                 </div>
 
-                <div id="chart" class="content-box chart">
-                    <!-- Axis labels -->
-                    <div class="text-s top-label">Progressista</div>
-                    <div class="text-s bottom-label">Conservador</div>
-                    <div class="text-s left-label">Esquerda</div>
-                    <div class="text-s right-label">Direita</div>
+                <div class="content-box chart">
+                    <div class="chart-info" data-controller="pulldown">
+                        <p class="text-center text-ss mb-2">
+                        Posição Horizontal (Eixo X): Eixo Económico. Esquerda (-1) vs Direita (+1).<br>
+                        Posição Vertical (Eixo Y): Eixo Social. Conservador (-1) vs Progressista (+1).<br>
+                        Eixo Político. Vermelho (Autoritário/Nacionalista, -1) → Cinzento<br>
+                        (Neutro, 0) → Amarelo (Liberal/Globalista, +1).<br><br>
+                        A sua posição é marcada com um ponto azul e calculada com base nas suas respostas.
+                        </p>
 
-                    <!-- Grid lines -->
-                    <div class="main-horizontal dotted-spaced"></div>
-                    <div class="main-vertical left dotted-spaced"></div>
+                        <div class="center">
+                            <img src="./images/arrow_down.svg"
+                              class="pointer" data-pulldown-target="arrow"
+                              data-action="click->pulldown#pullDown"
+                            >
+                        </div>
+                    </div>
+                    <div id="chart">
+                        <!-- Axis labels -->
+                        <div class="text-s top-label">Progressista</div>
+                        <div class="text-s bottom-label">Conservador</div>
+                        <div class="text-s left-label">Esquerda</div>
+                        <div class="text-s right-label">Direita</div>
 
-                    <!-- Dotted grid lines -->
+                        <!-- Grid lines -->
+                        <div class="main-horizontal dotted-spaced"></div>
+                        <div class="main-vertical left dotted-spaced"></div>
 
-                    <!-- Parties positioned on the chart -->
-                    <!-- Partido Socialista - blue circle -->
-                    <div class="party ps" style="left: 40%; top: 45%">PS</div>
+                        <!-- Dotted grid lines -->
 
-                    <!-- Bloco de Esquerda - red star/figure -->
-                    <div class="party be" style="left: 35%; top: 35%">BE</div>
+                        <!-- Parties positioned on the chart -->
+                        <!-- Partido Socialista - blue circle -->
+                        <div class="party ps" style="left: 40%; top: 45%">PS</div>
 
-                    <!-- PCP - hammer and sickle -->
-                    <div class="party pcp" style="left: 15%; top: 75%">PCP</div>
+                        <!-- Bloco de Esquerda - red star/figure -->
+                        <div class="party be" style="left: 35%; top: 35%">BE</div>
 
-                    <!-- Chega - in different positions -->
-                    <div class="party chega" style="left: 70%; top: 20%">CH</div>
-                    <div class="party chega" style="left: 35%; top: 80%">CH</div>
+                        <!-- PCP - hammer and sickle -->
+                        <div class="party pcp" style="left: 15%; top: 75%">PCP</div>
 
-                    <!-- AD - orange -->
-                    <div class="party ad" style="left: 65%; top: 40%">AD</div>
-                    <div class="party ad" style="left: 55%; top: 75%">AD</div>
-                    <div class="party ad" style="left: 20%; top: 85%">AD</div>
+                        <!-- Chega - in different positions -->
+                        <div class="party chega" style="left: 70%; top: 20%">CH</div>
+                        <div class="party chega" style="left: 35%; top: 80%">CH</div>
 
-                    <!-- Volt - purple -->
-                    <div class="party volt" style="left: 65%; top: 60%">VT</div>
+                        <!-- AD - orange -->
+                        <div class="party ad" style="left: 65%; top: 40%">AD</div>
+                        <div class="party ad" style="left: 55%; top: 75%">AD</div>
+                        <div class="party ad" style="left: 20%; top: 85%">AD</div>
 
-                    <!-- PAN - green -->
-                    <div class="party pan" style="left: 60%; top: 65%">PAN</div>
+                        <!-- Volt - purple -->
+                        <div class="party volt" style="left: 65%; top: 60%">VT</div>
 
-                    <!-- IL - liberal initiative -->
-                    <div class="party il" style="left: 55%; top: 65%">IL</div>
+                        <!-- PAN - green -->
+                        <div class="party pan" style="left: 60%; top: 65%">PAN</div>
 
-                    <!-- Extra circles for left side -->
-                    <div class="party be" style="left: 18%; top: 65%">PS</div>
-                    <div class="party be" style="left: 25%; top: 75%">PS</div>
+                        <!-- IL - liberal initiative -->
+                        <div class="party il" style="left: 55%; top: 65%">IL</div>
+
+                        <!-- Extra circles for left side -->
+                        <div class="party be" style="left: 18%; top: 65%">PS</div>
+                        <div class="party be" style="left: 25%; top: 75%">PS</div>
+
+
+                    </div>
+
                 </div>
             </div>
 

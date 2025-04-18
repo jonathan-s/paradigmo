@@ -25,8 +25,7 @@
     align-items: center;
 
     svg {
-        scale: 1.6;
-        margin-right: 45px;
+        scale: 1.2;
     }
 }
 
@@ -37,11 +36,74 @@
 
 .party-name {
     text-transform: uppercase;
+    position: absolute;
+    color: black;
+    padding-left: 15px;
+    font-weight: bold;
+    font-size: 14px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 
-  .party-table-title {
+.party-bar-container {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-color: #F2E3C4;
+}
+
+.party-row:nth-child(14n+2) .party-bar-container {
+    background: linear-gradient(to left, #4a90e2, #5ca0e6, #6eb1eb, #7ec2ef);
+}
+
+.party-percentage {
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    min-width: 30px;
+    text-align: right;
+}
+
+.party-table-title {
     margin-top: 192px;
-  }
+}
+
+.party-table {
+    padding: 32px 32px;
+    overflow: hidden;
+}
+
+.party-table-info :not(p:first-child) {
+  margin-top: 16px;
+}
+
+.party-row:nth-child(14n+2) {
+    /* Only the first element gets a margin-top. */
+    margin-top: 20px;
+}
+
+.party-table-info {
+    transition: all 200ms ease-in-out;
+    background-color: var(--bg-card);
+    border-radius: var(--border-radius);
+    padding: 32px;
+    padding-bottom: 8px;
+    margin-right: 16px;
+    margin-left: -12px;
+    position: absolute;
+    z-index: 1;
+    top: -232px;
+
+    .arrow-down {
+        rotate: 180deg;
+    }
+}
+
+.party-table-info.down {
+    top: 20px !important;
+    border: 1px solid var(--bg-color);
+}
 
 .party-description {
     max-width: 400px;

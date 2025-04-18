@@ -245,7 +245,32 @@ const createChart = (parties, you) => {
 }
 
 const createPartyTable = (affinities, parties) => {
-  let html = ""
+  let html = `
+    <div class="party-table-info" data-controller="pulldown">
+      <p class="text-ss">
+        O gráfico acima mostra a concordância geral com base em todas as suas
+        respostas. Quanto mais distante a resposta do utilizador da resposta
+        de um determinado partido, menor o grau de semelhança. Um resultado de
+        100% indica uma concordância total com um determinado partido em todas
+        as perguntas.
+      </p>
+      <p class="text-ss">
+        Os resultados devem ser interpretados tendo em consideração as
+        limitações do teste. O teste dá o mesmo peso a todas as afirmações, o
+        que normalmente não reflete as preferências dos eleitores. Assim, é
+        útil considerar não apenas o partido com maior percentagem de
+        semelhança, mas também os partidos com percentagens próximas, já que
+        podem ter maior concordância em temas mais relevantes para o
+        utilizador.
+      </p>
+      <div class="center">
+        <img src="./images/arrow_down.svg"
+          class="pointer" data-pulldown-target="arrow"
+          data-action="click->pulldown#pullDown"
+        >
+      </div>
+    </div>
+  `
 
   for (let [party, affinity] of affinities) {
     let percent = Math.round(100 * affinity, 0)
@@ -291,10 +316,17 @@ const createParty = (party, percent) => {
   return data
 }
 
-const questionContent = `
+class PullDownController extends Controller {
+  static targets = [
+    "arrow"
+  ]
 
 
-`
+  pullDown() {
+    this.element.classList.toggle("down")
+    this.arrowTarget.classList.toggle("arrow-down")
+  }
+}
 
 class ScrollController extends Controller {
   toQuestion() {
@@ -550,3 +582,4 @@ class QuestionController extends Controller {
 window.Stimulus = Application.start()
 Stimulus.register("question", QuestionController)
 Stimulus.register("scroll", ScrollController)
+Stimulus.register("pulldown", PullDownController)

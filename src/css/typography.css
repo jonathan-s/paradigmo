@@ -80,6 +80,10 @@ p {
     text-decoration: underline;
 }
 
+.text-center {
+    text-align: center;
+}
+
 
 @media (width < 430px) {
     h1 {

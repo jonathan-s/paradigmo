@@ -6,7 +6,7 @@ import { Application, Controller } from "./stimulus.js";
  * @returns {Object} Object with question indices as keys and mock answer objects as values
  */
 function mockAnswers(count = 60) {
-  const types = ["social", "económico", "politicá"];
+  const types = ["social", "económico", "política"];
   const mockAnswers = {};
 
   for (let i = 0; i < count; i++) {
@@ -172,7 +172,7 @@ function calculateCompassScores(questions) {
   // Filter questions by type
   const socialQuestions = questions.filter(q => q.type === "social");
   const economicQuestions = questions.filter(q => q.type === "económico");
-  const politicalQuestions = questions.filter(q => q.type === "politicá");
+  const politicalQuestions = questions.filter(q => q.type === "política");
 
   const axisDefinitions = {
     economic: economicQuestions,
@@ -252,8 +252,6 @@ const createPartyTable = (affinities, parties) => {
       </p>
       <p class="text-ss">
         Nota: O teste dá o mesmo peso a todas as afirmações, o que normalmente não reflete as preferências dos eleitores. Assim, é útil considerar não apenas o partido com maior percentagem de semelhança, mas também o partidos com percentagens próximas.
-        -------------------------------------------------------------------------
-        -------------------------------------------------------------------------
       </p>
       <div class="center">
         <img src="./images/arrow_down.svg"

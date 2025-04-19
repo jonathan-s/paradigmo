@@ -76,7 +76,7 @@
 }
 
 .party-table-info :not(p:first-child) {
-  margin-top: 16px;
+  margin-top: 40px;
 }
 
 .party-row:nth-child(14n+2) {
@@ -88,8 +88,8 @@
     transition: all 200ms ease-in-out;
     background-color: var(--bg-card);
     border-radius: var(--border-radius);
-    padding: 32px;
-    padding-bottom: 8px;
+    padding: 20px;
+    padding-bottom: -10px;
     margin-right: 16px;
     margin-left: -12px;
     position: absolute;

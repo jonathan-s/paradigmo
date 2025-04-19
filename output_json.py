@@ -86,7 +86,7 @@ def calculate_compass_scores(party: str):
     df = pd.read_csv("questions.csv")
     social_q = df[df["type"] == "social"]
     economic_q = df[df["type"] == "económico"]
-    political_q = df[df["type"] == "politicá"]
+    political_q = df[df["type"] == "política"]
 
     entity_answers = df[party]
     multipliers = df["multiplier"]

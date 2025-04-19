@@ -6,7 +6,7 @@ import { Application, Controller } from "./stimulus.js";
  * @returns {Object} Object with question indices as keys and mock answer objects as values
  */
 function mockAnswers(count = 60) {
-  const types = ["social", "económico", "politicá"];
+  const types = ["social", "económico", "política"];
   const mockAnswers = {};
 
   for (let i = 0; i < count; i++) {
@@ -172,7 +172,7 @@ function calculateCompassScores(questions) {
   // Filter questions by type
   const socialQuestions = questions.filter(q => q.type === "social");
   const economicQuestions = questions.filter(q => q.type === "económico");
-  const politicalQuestions = questions.filter(q => q.type === "politicá");
+  const politicalQuestions = questions.filter(q => q.type === "política");
 
   const axisDefinitions = {
     economic: economicQuestions,
@@ -248,20 +248,10 @@ const createPartyTable = (affinities, parties) => {
   let html = `
     <div class="party-table-info" data-controller="pulldown">
       <p class="text-ss">
-        O gráfico acima mostra a concordância geral com base em todas as suas
-        respostas. Quanto mais distante a resposta do utilizador da resposta
-        de um determinado partido, menor o grau de semelhança. Um resultado de
-        100% indica uma concordância total com um determinado partido em todas
-        as perguntas.
+        Este gráfico mostra a concordância geral com base em todas as suas respostas. Para cada afirmação, uma resposta mais distante do utilizador em relação à respostade um determinado partido, diminui a semelhança com esse partido.
       </p>
       <p class="text-ss">
-        Os resultados devem ser interpretados tendo em consideração as
-        limitações do teste. O teste dá o mesmo peso a todas as afirmações, o
-        que normalmente não reflete as preferências dos eleitores. Assim, é
-        útil considerar não apenas o partido com maior percentagem de
-        semelhança, mas também os partidos com percentagens próximas, já que
-        podem ter maior concordância em temas mais relevantes para o
-        utilizador.
+        Nota: O teste dá o mesmo peso a todas as afirmações, o que normalmente não reflete as preferências dos eleitores. Assim, é útil considerar não apenas o partido com maior percentagem de semelhança, mas também o partidos com percentagens próximas.
       </p>
       <div class="center">
         <img src="./images/arrow_down.svg"
